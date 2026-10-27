@@ -19,6 +19,6 @@
     <PackageReference Include="xunit.v3.mtp-off" Version="4.0.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" PrivateAssets="all" />
     <PackageReference Include="coverlet.msbuild" Version="10.1.0" PrivateAssets="all" />
-    <PackageReference Include="JunitXml.TestLogger" Version="8.0.0" />
+    <PackageReference Include="JunitXml.TestLogger" Version="8.1.0" />
   </ItemGroup>
 </Project>
