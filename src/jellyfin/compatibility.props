@@ -21,7 +21,7 @@
     <ConnectorManifest>/jellyfin/connector/manifest-12.json</ConnectorManifest>
     <ConnectorArchiveAliases>connector-12.1.zip</ConnectorArchiveAliases>
     <ConnectorManifestAliases>/jellyfin/connector/manifest-12.1.json</ConnectorManifestAliases>
-    <JellyfinLatestVersion>12.2</JellyfinLatestVersion>
+    <JellyfinLatestVersion>12.3</JellyfinLatestVersion>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Compile against the minimum; newer hotfixes are runtime validation targets. -->
