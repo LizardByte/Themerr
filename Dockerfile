@@ -16,7 +16,7 @@ RUN uv run --no-project --python 3.14 scripts/build_connector.py
 
 FROM denoland/deno:alpine-2.9.7 AS deno
 
-FROM python:3.14-alpine3.24 AS build
+FROM python:3.15-alpine3.24 AS build
 
 COPY --from=ghcr.io/astral-sh/uv:0.13 /uv /usr/local/bin/uv
 
