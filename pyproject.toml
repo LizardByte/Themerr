@@ -34,7 +34,7 @@ dependencies = [
     "urllib3==2.8.0",
     "uvicorn==0.54.0",
     "werkzeug==3.1.9",
-    "yt-dlp[default]==2026.10.21",
+    "yt-dlp[default]==2026.10.26",
 ]
 
 [project.optional-dependencies]
