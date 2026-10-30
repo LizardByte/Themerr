@@ -450,3 +450,94 @@ def test_contribution_actions_reflect_video_issues(client, reason, action, visib
     assert b'title="Movie" aria-hidden="true"' in rendered
     assert b'data-lucide="film"' in rendered
     assert b'data-lucide="play"' in rendered
+
+
+def test_retry_button_only_shows_for_pending_and_attention_items(client):
+    statuses = {
+        'a': ('themerr', 'complete'),
+        'b': (None, 'pending'),
+        'c': (None, 'failed'),
+        'd': (None, 'missing'),
+        'e': (None, 'unresolved'),
+        'f': ('themerr', 'complete'),
+    }
+    for identifier, (provider, status) in statuses.items():
+        save_server(identifier)
+        data = snapshot('Title ' + identifier, provider)
+        data['1']['items'][0]['theme_status'] = status
+        with storage.server_scope(identifier):
+            storage.replace_dashboard(data)
+    with storage.server_scope('f'):
+        storage.set_error(42, 'Theme is outdated')
+    page = client.get('/').text
+    shown = set(re.findall(r'data-retry-item data-server-id="([^"]+)" data-item-id="42"', page))
+    assert shown == {
+        'b',
+        'c',
+        'e',
+        'f',
+    }
+
+
+def test_retry_queues_a_cached_item(client, monkeypatch):
+    save_server('one')
+    with storage.server_scope('one'):
+        storage.replace_dashboard(snapshot('Pending'))
+    enqueue = Mock(return_value=True)
+    monkeypatch.setattr(processing, 'enqueue', enqueue)
+    response = client.post('/api/tasks/retry', json={'server_id': 'one', 'item_id': '42'}, headers=headers(client))
+    assert response.status_code == 202
+    assert response.json()['message'] == 'Retry queued. Follow progress in Activity.'
+    enqueue.assert_called_once_with('42')
+
+    enqueue.return_value = False
+    response = client.post('/api/tasks/retry', json={'server_id': 'one', 'item_id': '42'}, headers=headers(client))
+    assert response.status_code == 202
+    assert response.json()['message'] == 'This item is already queued.'
+
+
+@pytest.mark.parametrize('body', [
+    [],
+    {},
+    {'server_id': 'one'},
+    {'server_id': 'one', 'item_id': ''},
+    {'server_id': 'one', 'item_id': 42},
+    {'server_id': 'missing', 'item_id': '42'},
+    {'server_id': 'one', 'item_id': '99'},
+])
+def test_retry_rejects_invalid_or_unknown_items(client, monkeypatch, body):
+    save_server('one')
+    with storage.server_scope('one'):
+        storage.replace_dashboard(snapshot('Pending'))
+    enqueue = Mock(return_value=True)
+    monkeypatch.setattr(processing, 'enqueue', enqueue)
+    response = client.post('/api/tasks/retry', json=body, headers=headers(client))
+    assert response.status_code == 400
+    enqueue.assert_not_called()
+
+
+def test_retry_respects_disabled_updates_servers_ignored_libraries_and_csrf(client, configured, monkeypatch):
+    save_server('one')
+    with storage.server_scope('one'):
+        storage.replace_dashboard(snapshot('Pending'))
+    enqueue = Mock(return_value=True)
+    monkeypatch.setattr(processing, 'enqueue', enqueue)
+    body = {'server_id': 'one', 'item_id': '42'}
+    assert client.post('/api/tasks/retry', json=body).status_code == 400
+
+    configured['Themerr']['BOOL_THEMERR_ENABLED'] = False
+    assert client.post('/api/tasks/retry', json=body, headers=headers(client)).status_code == 400
+    configured['Themerr']['BOOL_THEMERR_ENABLED'] = True
+
+    with Session(storage.engine()) as session:
+        session.get(servers.ServerRecord, 'one').ignored_libraries = '1'
+        session.commit()
+    assert client.post('/api/tasks/retry', json=body, headers=headers(client)).status_code == 400
+
+    with Session(storage.engine()) as session:
+        record = session.get(servers.ServerRecord, 'one')
+        record.ignored_libraries = ''
+        record.enabled = False
+        session.commit()
+    assert client.post('/api/tasks/retry', json=body, headers=headers(client)).status_code == 400
+    enqueue.assert_not_called()

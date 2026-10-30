@@ -68,6 +68,14 @@ export async function waitForRefresh(id, query, delay) {
     return 'running';
 }
 
+export async function retryItem(button, request = api, notify = toast) {
+    const result = await request('/api/tasks/retry', {
+        body: { server_id: button.dataset.serverId, item_id: button.dataset.itemId },
+    });
+    notify(result.message);
+    return result;
+}
+
 async function refreshLibraries(button) {
     const result = await api('/api/tasks/refresh', { body: { scan: button.dataset.scan === 'true' } });
     toast(result.message);
@@ -125,6 +133,8 @@ export function initNavigation() {
 export function initPageControls() {
     document.querySelectorAll('[data-refresh]').forEach(button => button.addEventListener('click',
         () => busy(button, () => refreshLibraries(button))));
+    document.querySelectorAll('[data-retry-item]').forEach(button => button.addEventListener('click',
+        () => busy(button, () => retryItem(button))));
     document.querySelectorAll('time').forEach(element => {
         const date = new Date(element.textContent);
         if (!Number.isNaN(date.valueOf())) {

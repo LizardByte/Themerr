@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { matchesFilters, initDashboard, waitForRefresh } from '../../web/js/dashboard.js';
+import { matchesFilters, initDashboard, retryItem, waitForRefresh } from '../../web/js/dashboard.js';
 
 test('library filters distinguish the same title on separate servers and handle Unicode search', () => {
     const media = { title: 'Léon: The Professional', server: 'a', type: 'movie', theme: true, attention: false };
@@ -64,4 +64,17 @@ test('refresh waits for its own job and reports failures or long-running work', 
         async () => {}), 'failed');
     assert.equal(await waitForRefresh('requested', async () => ({ jobs: [] }),
         async () => {}), 'running');
+});
+
+test('retry posts the selected server item and reports the result', async () => {
+    const calls = [];
+    const messages = [];
+    const button = { dataset: { serverId: 'server-1', itemId: '42' } };
+    const result = await retryItem(button, async (path, options) => {
+        calls.push([path, options]);
+        return { message: 'Retry queued. Follow progress in Activity.' };
+    }, message => messages.push(message));
+    assert.deepEqual(calls, [['/api/tasks/retry', { body: { server_id: 'server-1', item_id: '42' } }]]);
+    assert.deepEqual(messages, ['Retry queued. Follow progress in Activity.']);
+    assert.equal(result.message, messages[0]);
 });
