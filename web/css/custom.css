@@ -200,10 +200,10 @@ details[open] > summary .details-chevron { transform: rotate(180deg); }
 .failure-reason { margin-top: 7px; max-width: 330px; font-size: 10px; color: var(--danger); overflow-wrap: anywhere; }
 .failure-reason strong { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; color: var(--warning); font-weight: 500; }
 .failure-reason .lucide { width: 12px; height: 12px; }
-.retry-button { display: inline-flex; align-items: center; vertical-align: middle; gap: 5px; margin: 3px 0 3px 7px; padding: 3px 7px; background: transparent; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 6px; font-size: 10px; white-space: nowrap; }
+.retry-button { display: inline-flex; align-items: center; gap: 6px; margin: 3px 0 3px 7px; padding: 4px 7px; background: transparent; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 6px; font-size: 10px; font-weight: 500; line-height: inherit; white-space: nowrap; }
 .retry-button:hover:not(:disabled) { color: var(--accent); background: var(--surface-raised); }
 .retry-button:disabled { opacity: .6; cursor: progress; }
-.retry-button .lucide { width: 12px; height: 12px; }
+.retry-button .lucide { width: 13px; height: 13px; stroke-width: 2; }
 .contribute-link { display: inline-flex; align-items: center; gap: 5px; color: var(--ink-soft); font-size: 11px; }
 .contribute-link:hover { color: var(--accent); }
 .contribute-link .lucide { width: 13px; height: 13px; }
