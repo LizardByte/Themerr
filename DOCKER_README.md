@@ -65,6 +65,7 @@ services:
       - PUID=<uid>
       - PGID=<gid>
       - TZ=<timezone>
+      - THEMERR_SCAN_ON_BOOT=true
     ports:
       - 9494:9494
       - 9495:9495
@@ -105,6 +106,7 @@ The internal port is `9494`; the host port may be changed (e.g. `-p 8080:9494`).
 | `-e PUID=<uid>`                                      | User ID                                                                              | `1001`                           |  False   |
 | `-e PGID=<gid>`                                      | Group ID                                                                             | `1001`                           |  False   |
 | `-e TZ=<timezone>`                                   | Lookup TZ value [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | `America/New_York`               |   True   |
+| `-e THEMERR_SCAN_ON_BOOT=<true\|false>`              | Set to `false` to skip the theme scan at startup; scheduled scans still run          | `false`                          |  False   |
 
 ### User / Group Identifiers:
 

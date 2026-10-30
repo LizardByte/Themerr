@@ -4,6 +4,9 @@
 from threading import Event
 from unittest.mock import Mock
 
+# lib imports
+import pytest
+
 # local imports
 from themerr import scheduled_tasks
 
@@ -125,5 +128,47 @@ def test_reconfigure_changes_intervals_without_duplicating_or_removing_other_job
         scheduled_tasks.configure_jobs()
         assert len(scheduler.get_jobs('themerr')) == 1
         assert scheduler.get_jobs('other') == [unrelated]
+    finally:
+        scheduler.clear()
+
+
+@pytest.mark.parametrize(('value', 'expected'), [
+    (None, True),
+    ('', True),
+    ('true', True),
+    ('1', True),
+    ('false', False),
+    (' FALSE ', False),
+    ('0', False),
+    ('no', False),
+    ('off', False),
+])
+def test_scan_on_boot_reads_the_environment(monkeypatch, value, expected):
+    if value is None:
+        monkeypatch.delenv(scheduled_tasks.SCAN_ON_BOOT_ENV, raising=False)
+    else:
+        monkeypatch.setenv(scheduled_tasks.SCAN_ON_BOOT_ENV, value)
+    assert scheduled_tasks.scan_on_boot() is expected
+
+
+def test_schedule_loop_skips_only_the_startup_scan_when_disabled(configured, monkeypatch):
+    scheduler = scheduled_tasks.schedule
+    scheduler.clear()
+    dispatched = []
+    monkeypatch.setattr(scheduled_tasks, 'run_threaded', lambda **kwargs: dispatched.append(kwargs['task_name']))
+    monkeypatch.setenv(scheduled_tasks.SCAN_ON_BOOT_ENV, 'false')
+
+    def stop(seconds):
+        raise RuntimeError('stop')
+
+    monkeypatch.setattr(scheduled_tasks.time, 'sleep', stop)
+    try:
+        configured['Themerr']['BOOL_THEMERR_ENABLED'] = True
+        scheduled_tasks.configure_jobs()
+        with pytest.raises(RuntimeError):
+            scheduled_tasks.schedule_loop()
+        assert 'Theme scan and queue' not in dispatched
+        assert 'Dashboard refresh' in dispatched
+        assert len(scheduler.get_jobs('theme-scan')) == 1
     finally:
         scheduler.clear()

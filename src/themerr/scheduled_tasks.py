@@ -1,6 +1,7 @@
 # standard imports
 from collections import deque
 from datetime import datetime, timezone
+import os
 import threading
 import time
 import uuid
@@ -20,6 +21,14 @@ log = logger.get_logger(name=__name__)
 _job_lock = threading.RLock()
 _jobs = deque(maxlen=30)
 _running = {}
+SCAN_ON_BOOT_ENV = 'THEMERR_SCAN_ON_BOOT'
+_SCAN_TAG = 'theme-scan'
+_DISABLED_VALUES = {
+    '0',
+    'false',
+    'no',
+    'off',
+}
 
 
 def run_threaded(
@@ -96,6 +105,27 @@ def run_threaded(
     return job_thread
 
 
+def scan_on_boot() -> bool:
+    """
+    Check whether the theme scan should run when the scheduler starts.
+
+    The ``THEMERR_SCAN_ON_BOOT`` environment variable disables the startup scan when set to
+    ``false``, ``0``, ``no``, or ``off``. Any other value, or no value, keeps the scan.
+    Scheduled scans still run at the configured interval.
+
+    Returns
+    -------
+    bool
+        True when the startup theme scan should run.
+
+    Examples
+    --------
+    >>> scan_on_boot()
+    True
+    """
+    return os.environ.get(SCAN_ON_BOOT_ENV, '').strip().lower() not in _DISABLED_VALUES
+
+
 def schedule_loop() -> None:
     """
     Start the schedule loop.
@@ -108,7 +138,14 @@ def schedule_loop() -> None:
     ...
     """
     log.info('Scheduler started; dispatching initial jobs')
-    schedule.run_all()  # run all jobs once
+    if scan_on_boot():
+        schedule.run_all()  # run all jobs once
+    else:
+        log.info('Skipping the startup theme scan because %s is disabled', SCAN_ON_BOOT_ENV)
+        skipped = schedule.get_jobs(_SCAN_TAG)
+        for job in schedule.jobs[:]:
+            if job not in skipped:
+                job.run()
 
     while True:
         schedule.run_pending()
@@ -124,7 +161,7 @@ def configure_jobs() -> None:
             target=scheduled_update,
             daemon=True,
             task_name='Theme scan and queue',
-        ).tag('themerr')
+        ).tag('themerr', _SCAN_TAG)
 
     schedule.every(max(15, int(config.CONFIG['Themerr']['INT_UPDATE_DATABASE_CACHE_INTERVAL']))).minutes.do(
         job_func=run_threaded,
