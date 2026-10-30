@@ -257,6 +257,32 @@ def refresh(payload=Depends(_payload)):
     )
 
 
+@router.api_route('/api/tasks/retry', methods=['POST'], name='server_ui.retry', response_model=None)
+def retry(payload=Depends(_payload)):
+    """Queue one cached library item for another theme attempt.
+
+    Returns
+    -------
+    Response
+        Dispatch confirmation, or a fixed client error when the item cannot be retried.
+    """
+    from themerr import mcp_tools
+    server_id = payload.get('server_id')
+    item_id = payload.get('item_id')
+    if not all(isinstance(value, str) and value for value in (
+        server_id,
+        item_id,
+    )):
+        return JSONResponse({'message': 'Select an item to retry.'}, status_code=400)
+    try:
+        result = mcp_tools.retry_items(server_id, [item_id])
+    except mcp_tools.ToolInputError as error:
+        return JSONResponse({'message': str(error)}, status_code=400)
+    message = 'Retry queued. Follow progress in Activity.' if result['queued_item_ids'] \
+        else 'This item is already queued.'
+    return JSONResponse({'message': message}, status_code=202)
+
+
 @router.api_route('/api/themerrdb', methods=['GET', 'HEAD'], name='server_ui.database_status', response_model=None)
 def database_status():
     """Return the latest successful ThemerrDB Pages deployment from the hourly cache.

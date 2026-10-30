@@ -1453,19 +1453,23 @@ msgstr ""
 msgid "Theme not installed yet"
 msgstr ""
 
-#: web/templates/home.html:82
+#: web/templates/home.html:81
+msgid "Retry"
+msgstr ""
+
+#: web/templates/home.html:83
 msgid "Edit"
 msgstr ""
 
-#: web/templates/home.html:82
+#: web/templates/home.html:83
 msgid "Add"
 msgstr ""
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "No titles match."
 msgstr ""
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "Try another search or reset your filters."
 msgstr ""
 
