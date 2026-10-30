@@ -1454,10 +1454,6 @@ msgid "Theme not installed yet"
 msgstr ""
 
 #: web/templates/home.html:81
-msgid "Retry theme for"
-msgstr ""
-
-#: web/templates/home.html:81
 msgid "Retry"
 msgstr ""
 
