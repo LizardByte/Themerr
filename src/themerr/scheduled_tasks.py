@@ -1,7 +1,6 @@
 # standard imports
 from collections import deque
 from datetime import datetime, timezone
-import os
 import threading
 import time
 import uuid
@@ -21,14 +20,7 @@ log = logger.get_logger(name=__name__)
 _job_lock = threading.RLock()
 _jobs = deque(maxlen=30)
 _running = {}
-SCAN_ON_BOOT_ENV = 'THEMERR_SCAN_ON_BOOT'
 _SCAN_TAG = 'theme-scan'
-_DISABLED_VALUES = {
-    '0',
-    'false',
-    'no',
-    'off',
-}
 
 
 def run_threaded(
@@ -109,9 +101,9 @@ def scan_on_boot() -> bool:
     """
     Check whether the theme scan should run when the scheduler starts.
 
-    The ``THEMERR_SCAN_ON_BOOT`` environment variable disables the startup scan when set to
-    ``false``, ``0``, ``no``, or ``off``. Any other value, or no value, keeps the scan.
-    Scheduled scans still run at the configured interval.
+    Reads the ``BOOL_SCAN_ON_BOOT`` Themerr setting. The scheduler reads it once at startup,
+    so a change applies the next time Themerr starts. Scheduled scans still run at the
+    configured interval when the startup scan is disabled.
 
     Returns
     -------
@@ -123,7 +115,7 @@ def scan_on_boot() -> bool:
     >>> scan_on_boot()
     True
     """
-    return os.environ.get(SCAN_ON_BOOT_ENV, '').strip().lower() not in _DISABLED_VALUES
+    return config.CONFIG['Themerr']['BOOL_SCAN_ON_BOOT']
 
 
 def schedule_loop() -> None:
@@ -141,7 +133,7 @@ def schedule_loop() -> None:
     if scan_on_boot():
         schedule.run_all()  # run all jobs once
     else:
-        log.info('Skipping the startup theme scan because %s is disabled', SCAN_ON_BOOT_ENV)
+        log.info('Skipping the startup theme scan because Scan on startup is disabled')
         skipped = schedule.get_jobs(_SCAN_TAG)
         for job in schedule.jobs[:]:
             if job not in skipped:

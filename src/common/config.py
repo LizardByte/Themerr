@@ -344,6 +344,13 @@ _CONFIG_SPEC_DICT = {
         'name': _('Themerr'),
         'description': _('Themerr settings.'),
         'icon': 'music',
+        'BOOL_SCAN_ON_BOOT': {
+            'type': 'boolean',
+            'name': _('Scan on startup'),
+            'description': _('Run the theme scan when Themerr starts. Scheduled scans still run when this is '
+                             'disabled. Changes apply the next time Themerr starts.'),
+            'default': True,
+        },
         'BOOL_THEMERR_ENABLED': {
             'type': 'boolean',
             'name': _('Themerr Enabled'),
