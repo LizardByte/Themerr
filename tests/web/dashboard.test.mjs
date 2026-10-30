@@ -69,12 +69,31 @@ test('refresh waits for its own job and reports failures or long-running work', 
 test('retry posts the selected server item and reports the result', async () => {
     const calls = [];
     const messages = [];
-    const button = { dataset: { serverId: 'server-1', itemId: '42' } };
+    const message = 'Retry queued. Follow progress in Activity.';
+    const button = {
+        dataset: {
+            serverId: 'server-1',
+            itemId: '42',
+        },
+    };
     const result = await retryItem(button, async (path, options) => {
-        calls.push([path, options]);
-        return { message: 'Retry queued. Follow progress in Activity.' };
-    }, message => messages.push(message));
-    assert.deepEqual(calls, [['/api/tasks/retry', { body: { server_id: 'server-1', item_id: '42' } }]]);
-    assert.deepEqual(messages, ['Retry queued. Follow progress in Activity.']);
-    assert.equal(result.message, messages[0]);
+        calls.push([
+            path,
+            options,
+        ]);
+        return { message };
+    }, text => messages.push(text));
+    assert.deepEqual(calls, [
+        [
+            '/api/tasks/retry',
+            {
+                body: {
+                    server_id: 'server-1',
+                    item_id: '42',
+                },
+            },
+        ],
+    ]);
+    assert.deepEqual(messages, [message]);
+    assert.equal(result.message, message);
 });

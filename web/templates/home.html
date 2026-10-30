@@ -77,8 +77,8 @@
                     {% elif item.theme_status == 'missing' %}<span class="status-badge neutral"><i data-lucide="circle-x"></i>{{ _('Missing from ThemerrDB') }}</span>
                     {% elif item.theme_status == 'unresolved' %}<span class="status-badge warning"><i data-lucide="circle-help"></i>{{ _('TMDB ID unavailable') if item.source_id else _('External ID unavailable') }}</span>
                     {% else %}<span class="status-badge pending"><i data-lucide="clock"></i>{{ _('Theme not installed yet') }}</span>{% endif %}
-                    {% if failure_reason %}<div class="failure-reason">{% if item.theme %}<strong><i data-lucide="triangle-alert"></i>{{ _('Outdated from ThemerrDB') }}</strong>{% endif %}<span>{{ failure_reason }}</span></div>{% endif %}
                     {% if (attention or item.theme_status == 'pending') and section.server_id != 'default' %}<button type="button" class="retry-button" data-retry-item data-server-id="{{ section.server_id }}" data-item-id="{{ item.rating_key }}"><i data-lucide="refresh-cw" aria-hidden="true"></i>{{ _('Retry') }}<span class="visually-hidden"> {{ item.title }}</span></button>{% endif %}
+                    {% if failure_reason %}<div class="failure-reason">{% if item.theme %}<strong><i data-lucide="triangle-alert"></i>{{ _('Outdated from ThemerrDB') }}</strong>{% endif %}<span>{{ failure_reason }}</span></div>{% endif %}
                 </td>
                 <td class="contribution-cell">{% if item.issue_url and (item.issue_action != 'edit' or item.show_edit) %}<a class="contribute-link" href="{{ item.issue_url }}" target="_blank" rel="noopener noreferrer">{{ _('Edit') if item.issue_action == 'edit' else _('Add') }}<i data-lucide="arrow-up-right"></i></a>{% else %}<span class="muted">—</span>{% endif %}</td>
             </tr>

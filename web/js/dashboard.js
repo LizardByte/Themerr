@@ -70,7 +70,10 @@ export async function waitForRefresh(id, query, delay) {
 
 export async function retryItem(button, request = api, notify = toast) {
     const result = await request('/api/tasks/retry', {
-        body: { server_id: button.dataset.serverId, item_id: button.dataset.itemId },
+        body: {
+            server_id: button.dataset.serverId,
+            item_id: button.dataset.itemId,
+        },
     });
     notify(result.message);
     return result;
