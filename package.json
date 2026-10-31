@@ -10,7 +10,7 @@
     "@fontsource/open-sans": "5.3.0",
     "bootstrap": "5.3.8",
     "lucide": "1.61.0",
-    "swagger-ui-dist": "5.34.0"
+    "swagger-ui-dist": "5.34.1"
   },
   "devDependencies": {
     "esbuild": "0.28.2"
