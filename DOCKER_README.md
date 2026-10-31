@@ -106,6 +106,9 @@ The internal port is `9494`; the host port may be changed (e.g. `-p 8080:9494`).
 | `-e PGID=<gid>`                                      | Group ID                                                                             | `1001`                           |  False   |
 | `-e TZ=<timezone>`                                   | Lookup TZ value [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | `America/New_York`               |   True   |
 
+To skip the theme scan when the container starts, turn off **Scan on startup** under **Settings → Themerr**.
+Scheduled scans still run, and the change applies the next time the container starts.
+
 ### User / Group Identifiers:
 
 When using data volumes (-v flags) permissions issues can arise between the host OS and the container. To avoid this
