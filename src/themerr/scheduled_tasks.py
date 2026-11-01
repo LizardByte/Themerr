@@ -130,7 +130,7 @@ def schedule_loop() -> None:
     ...
     """
     log.info('Scheduler started; dispatching initial jobs')
-    if scan_on_boot():
+    if config.CONFIG['Themerr']['BOOL_SCAN_ON_BOOT']:
         schedule.run_all()  # run all jobs once
     else:
         log.info('Skipping the startup theme scan because Scan on startup is disabled')
