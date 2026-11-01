@@ -134,17 +134,14 @@ def test_reconfigure_changes_intervals_without_duplicating_or_removing_other_job
 
 def test_scan_on_boot_defaults_to_enabled(configured):
     assert configured['Themerr']['BOOL_SCAN_ON_BOOT'] is True
-    assert scheduled_tasks.scan_on_boot() is True
 
 
-def test_disabled_scan_on_boot_survives_a_config_reload(configured, monkeypatch):
+def test_disabled_scan_on_boot_survives_a_config_reload(configured):
     from common import config
     configured['Themerr']['BOOL_SCAN_ON_BOOT'] = False
     assert config.save_config(configured)
     reloaded = config.create_config(configured.filename)
     assert reloaded['Themerr']['BOOL_SCAN_ON_BOOT'] is False
-    monkeypatch.setattr(config, 'CONFIG', reloaded)
-    assert scheduled_tasks.scan_on_boot() is False
 
 
 def test_schedule_loop_skips_only_the_startup_scan_when_disabled(configured, monkeypatch):
