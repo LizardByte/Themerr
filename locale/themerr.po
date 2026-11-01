@@ -905,7 +905,7 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: web/templates/activity.html:8 web/templates/home.html:80
+#: web/templates/activity.html:8 web/templates/home.html:81
 msgid "Outdated from ThemerrDB"
 msgstr ""
 
@@ -1453,7 +1453,7 @@ msgstr ""
 msgid "Theme not installed yet"
 msgstr ""
 
-#: web/templates/home.html:81
+#: web/templates/home.html:80
 msgid "Retry"
 msgstr ""
 
