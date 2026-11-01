@@ -97,27 +97,6 @@ def run_threaded(
     return job_thread
 
 
-def scan_on_boot() -> bool:
-    """
-    Check whether the theme scan should run when the scheduler starts.
-
-    Reads the ``BOOL_SCAN_ON_BOOT`` Themerr setting. The scheduler reads it once at startup,
-    so a change applies the next time Themerr starts. Scheduled scans still run at the
-    configured interval when the startup scan is disabled.
-
-    Returns
-    -------
-    bool
-        True when the startup theme scan should run.
-
-    Examples
-    --------
-    >>> scan_on_boot()
-    True
-    """
-    return config.CONFIG['Themerr']['BOOL_SCAN_ON_BOOT']
-
-
 def schedule_loop() -> None:
     """
     Start the schedule loop.
