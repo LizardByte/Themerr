@@ -8,7 +8,7 @@ license = { text = "AGPL-3.0-only" }
 authors = [{ name = "LizardByte", email = "lizardbyte@users.noreply.github.com" }]
 dependencies = [
     "alembic==1.20.1",
-    "anyio==4.15.1",
+    "anyio==4.16.0",
     "av==19.0.2",
     "babel==2.18.0",
     "configobj==5.0.9",
