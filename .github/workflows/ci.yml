@@ -17,10 +17,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  organization:
+    uses: LizardByte/.github/.github/workflows/__call-organization.yml@master
+
   setup_release:
+    needs: organization
     name: Setup Release
     outputs:
-      publish_release: ${{ steps.setup_release.outputs.publish_release }}
+      publish_release: >-
+        ${{ needs.organization.outputs.allowed == 'true' &&
+        steps.setup_release.outputs.publish_release == 'true' }}
       release_body: ${{ steps.setup_release.outputs.release_body }}
       release_commit: ${{ steps.setup_release.outputs.release_commit }}
       release_generate_release_notes: ${{ steps.setup_release.outputs.release_generate_release_notes }}
@@ -41,7 +47,9 @@ jobs:
 
   connector:
     name: Jellyfin Connector
-    needs: setup_release
+    needs:
+      - organization
+      - setup_release
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -84,7 +92,7 @@ jobs:
         if: >-
           always() &&
           (steps.test.outcome == 'success' || steps.test.outcome == 'failure') &&
-          startsWith(github.repository, 'LizardByte/')
+          needs.organization.outputs.allowed == 'true'
         uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5  # v7.1.1
         with:
           fail_ci_if_error: true
@@ -97,7 +105,7 @@ jobs:
         if: >-
           always() &&
           (steps.test.outcome == 'success' || steps.test.outcome == 'failure') &&
-          startsWith(github.repository, 'LizardByte/')
+          needs.organization.outputs.allowed == 'true'
         uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5  # v7.1.1
         with:
           fail_ci_if_error: true
@@ -135,6 +143,7 @@ jobs:
 
   build:
     needs:
+      - organization
       - setup_release
       - connector
     runs-on: ${{ matrix.os }}
@@ -228,7 +237,7 @@ jobs:
         if: >-
           always() &&
           (steps.test.outcome == 'success' || steps.test.outcome == 'failure') &&
-          startsWith(github.repository, 'LizardByte/')
+          needs.organization.outputs.allowed == 'true'
         uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5  # v7.1.1
         with:
           fail_ci_if_error: true
@@ -242,7 +251,7 @@ jobs:
         if: >-
           always() &&
           (steps.test.outcome == 'success' || steps.test.outcome == 'failure') &&
-          startsWith(github.repository, 'LizardByte/')
+          needs.organization.outputs.allowed == 'true'
         uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5  # v7.1.1
         with:
           fail_ci_if_error: true
