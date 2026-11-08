@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-File: /[LizardByte.Themerr] master/themerr.po\n"
 "X-Crowdin-File-ID: 6533\n"
 "Language: bg_BG\n"
-"PO-Revision-Date: 2026-10-10 01:56\n"
+"PO-Revision-Date: 2026-11-08 01:34\n"
 
 #: src/common/config.py:86
 msgid "Info"
@@ -196,7 +196,7 @@ msgstr "Jellyfin"
 msgid "Jellyfin theme processing settings. Connections are managed on the Servers page."
 msgstr "Настройки за обработка на теми в Jellyfin. Връзките се управляват на страницата „Сървъри“."
 
-#: src/common/config.py:260 src/common/config.py:361
+#: src/common/config.py:260 src/common/config.py:368
 msgid "Movie support"
 msgstr "Поддръжка на филми"
 
@@ -204,7 +204,7 @@ msgstr "Поддръжка на филми"
 msgid "Add themes to Jellyfin movies."
 msgstr "Добавяне на теми към филмите в Jellyfin."
 
-#: src/common/config.py:264 src/common/config.py:367
+#: src/common/config.py:264 src/common/config.py:374
 msgid "Series support"
 msgstr "Поддръжка на серии"
 
@@ -212,7 +212,7 @@ msgstr "Поддръжка на серии"
 msgid "Add themes to Jellyfin series."
 msgstr "Добавяне на теми към сериите в Jellyfin."
 
-#: src/common/config.py:268 src/common/config.py:355 web/templates/home.html:31
+#: src/common/config.py:268 src/common/config.py:362 web/templates/home.html:31
 msgid "Collections"
 msgstr "Колекции"
 
@@ -325,134 +325,142 @@ msgid "Themerr settings."
 msgstr "Настройки на Themerr."
 
 #: src/common/config.py:349
+msgid "Scan on startup"
+msgstr "Сканиране при стартиране"
+
+#: src/common/config.py:350
+msgid "Run the theme scan when Themerr starts. Scheduled scans still run when this is disabled. Changes apply the next time Themerr starts."
+msgstr "Стартирайте сканирането на темата при стартирането на Themerr. Планираните сканирания продължават да се изпълняват, дори когато тази опция е деактивирана. Промените влизат в сила при следващото стартиране на Themerr."
+
+#: src/common/config.py:356
 msgid "Themerr Enabled"
 msgstr "Themerr е активиран"
 
-#: src/common/config.py:350
+#: src/common/config.py:357
 msgid "When enabled, Themerr will attempt to update themes."
 msgstr "Когато тази опция е активирана, Themerr ще се опита да актуализира темите."
 
-#: src/common/config.py:356
+#: src/common/config.py:363
 msgid "Add themes to collections."
 msgstr "Добавяне на теми към колекции."
 
-#: src/common/config.py:362
+#: src/common/config.py:369
 msgid "Add themes to movies using the Plex Movie agent."
 msgstr "Добавяйте теми към филмите с помощта на Plex Movie Agent."
 
-#: src/common/config.py:368
+#: src/common/config.py:375
 msgid "Add themes to series using the Plex Series agent."
 msgstr "Добавяйте теми към сериали с помощта на агента „Plex Series“."
 
-#: src/common/config.py:373
+#: src/common/config.py:380
 msgid "Overwrite Plex themes"
 msgstr "Заместване на теми в Plex"
 
-#: src/common/config.py:374
+#: src/common/config.py:381
 msgid "When enabled, Themerr will overwrite themes provided by Plex."
 msgstr "Когато тази опция е активирана, Themerr ще замени темите, предоставени от Plex."
 
-#: src/common/config.py:379
+#: src/common/config.py:386
 msgid "Prefer MP4A AAC Codec"
 msgstr "Предпочитайте кодек MP4A AAC"
 
-#: src/common/config.py:380
+#: src/common/config.py:387
 msgid "This can improve theme compatibility with Apple devices."
 msgstr "Това може да подобри съвместимостта на темата с устройствата на Apple."
 
-#: src/common/config.py:385
+#: src/common/config.py:392
 msgid "Remove unused themes"
 msgstr "Премахване на неизползваните теми"
 
-#: src/common/config.py:386
+#: src/common/config.py:393
 msgid "Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "Освобождава място в директорията с метаданни на Plex. За тази опция е необходимо да е зададен пътят към „директорията с данни на Plex“"
 
-#: src/common/config.py:392
+#: src/common/config.py:399
 msgid "Remove unused art"
 msgstr "Премахване на неизползвани графични елементи"
 
-#: src/common/config.py:393 src/common/config.py:401
+#: src/common/config.py:400 src/common/config.py:408
 msgid "Applies to collection. Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "Приложимо за колекции. Освобождава място в директорията с метаданни на Plex. За тази опция е необходимо да е зададен пътят към „директорията с данни на Plex“"
 
-#: src/common/config.py:400
+#: src/common/config.py:407
 msgid "Remove unused posters"
 msgstr "Премахнете неизползваните плакати"
 
-#: src/common/config.py:408
+#: src/common/config.py:415
 msgid "Collection metadata"
 msgstr "Метаданни за колекцията"
 
-#: src/common/config.py:409
+#: src/common/config.py:416
 msgid "Update collection metadata (poster, art, and summary) during scheduled update."
 msgstr "Актуализиране на метаданните на колекцията (плакат, илюстрация и резюме) по време на планираното обновяване."
 
-#: src/common/config.py:414
+#: src/common/config.py:421
 msgid "Ignore locked fields."
 msgstr "Пренебрегни заключените полета."
 
-#: src/common/config.py:415
+#: src/common/config.py:422
 msgid "If you used Themerr v2024.813.13709 or lower, you may need to enable this to update items."
 msgstr "Ако сте използвали Themerr v2024.813.13709 или по-стара версия, може да се наложи да активирате тази опция, за да актуализирате елементите."
 
-#: src/common/config.py:421
+#: src/common/config.py:428
 msgid "Ignored library IDs"
 msgstr "Пренебрегнати идентификатори на библиотеки"
 
-#: src/common/config.py:422
+#: src/common/config.py:429
 msgid "Comma-separated library IDs to exclude from scheduled updates. IDs appear on Home."
 msgstr "Идентификатори на библиотеки, разделени със запетая, които да бъдат изключени от планираните актуализации. Идентификаторите се показват на началната страница."
 
-#: src/common/config.py:428
+#: src/common/config.py:435
 msgid "Update themes interval"
 msgstr "Интервал за актуализиране на темите"
 
-#: src/common/config.py:429
+#: src/common/config.py:436
 msgid "Interval for automatic update task, in minutes (min: 15)."
 msgstr "Интервал за задачата за автоматично актуализиране, в минути (мин.: 15)."
 
-#: src/common/config.py:436
+#: src/common/config.py:443
 msgid "Update database cache interval"
 msgstr "Актуализиране на интервала на кеширане на базата данни"
 
-#: src/common/config.py:437
+#: src/common/config.py:444
 msgid "Interval for database cache update task, in minutes (min: 15)."
 msgstr "Интервал за задачата за актуализиране на кеша на базата данни, в минути (мин.: 15)."
 
-#: src/common/config.py:444
+#: src/common/config.py:451
 msgid "PlexAPI timeout"
 msgstr "Време за изчакване на PlexAPI"
 
-#: src/common/config.py:445
+#: src/common/config.py:452
 msgid "Increase this slightly if you experience timeouts when adding themes. (min: 1)"
 msgstr "Увеличете тази стойност леко, ако се сблъскате с изтичане на времето при добавянето на теми. (мин.: 1)"
 
-#: src/common/config.py:452
+#: src/common/config.py:459
 msgid "Theme upload retries"
 msgstr "Опити за качване на тема"
 
-#: src/common/config.py:453
+#: src/common/config.py:460
 msgid "If uploading themes fail, retry this many times. (min: 0)"
 msgstr "Ако качването на теми се провали, опитайте отново толкова пъти. (мин.: 0)"
 
-#: src/common/config.py:460
+#: src/common/config.py:467
 msgid "Multiprocessing thread count"
 msgstr "Брой нишки при многопроцесорната обработка"
 
-#: src/common/config.py:461
+#: src/common/config.py:468
 msgid "The number of threads to use when adding themes. Restart required. (min: 1)"
 msgstr "Броят на нишките, които да се използват при добавянето на теми. Необходимо е презареждане. (мин.: 1)"
 
-#: src/common/config.py:469
+#: src/common/config.py:476
 msgid "YouTube Cookies"
 msgstr "Бисквитки на YouTube"
 
-#: src/common/config.py:471
+#: src/common/config.py:478
 msgid "Optional: export youtube.com cookies with Get cookies.txt LOCALLY using its JSON format, then paste the entire JSON array here and save. Saved cookies are encrypted and masked. Select the eye icon to reveal them. Leave this blank to keep them, or select Clear saved cookies to remove them."
 msgstr "По избор: експортирайте „бисквитките“ от youtube.com с помощта на „Get cookies.txt“ ЛОКАЛНО в JSON формат, след което поставете целия JSON масив тук и запазете. Запазените „бисквитки“ са криптирани и маскирани. Изберете иконата с окото, за да ги видите. Оставете това поле празно, за да ги запазите, или изберете „Изчисти запазените „бисквитки““, за да ги премахнете."
 
-#: src/common/config.py:478
+#: src/common/config.py:485
 msgid "Cookie export instructions"
 msgstr "Инструкции за експортиране на „бисквитки“"
 
@@ -838,7 +846,7 @@ msgstr "Не са регистрирани грешки при обработк�
 msgid "ID"
 msgstr "ИД"
 
-#: web/templates/activity.html:8 web/templates/home.html:80
+#: web/templates/activity.html:8 web/templates/home.html:81
 msgid "Outdated from ThemerrDB"
 msgstr "Остаряла информация от ThemerrDB"
 
@@ -1359,19 +1367,23 @@ msgstr "Идентификаторът в TMDB не е наличен"
 msgid "Theme not installed yet"
 msgstr "Темата все още не е инсталирана"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:80
+msgid "Retry"
+msgstr "Опитай отново"
+
+#: web/templates/home.html:83
 msgid "Edit"
 msgstr "Редактиране на"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:83
 msgid "Add"
 msgstr "Добавяне на"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "No titles match."
 msgstr "Няма съвпадения по заглавия."
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "Try another search or reset your filters."
 msgstr "Опитайте с друго търсене или нулирайте филтрите си."
 
