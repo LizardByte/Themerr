@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-File: /[LizardByte.Themerr] master/themerr.po\n"
 "X-Crowdin-File-ID: 6533\n"
 "Language: it_IT\n"
-"PO-Revision-Date: 2026-10-10 01:56\n"
+"PO-Revision-Date: 2026-11-08 01:34\n"
 
 #: src/common/config.py:86
 msgid "Info"
@@ -196,7 +196,7 @@ msgstr "Jellyfin"
 msgid "Jellyfin theme processing settings. Connections are managed on the Servers page."
 msgstr "Impostazioni di elaborazione del tema Jellyfin. Le connessioni sono gestite nella pagina Server."
 
-#: src/common/config.py:260 src/common/config.py:361
+#: src/common/config.py:260 src/common/config.py:368
 msgid "Movie support"
 msgstr "Supporto film"
 
@@ -204,7 +204,7 @@ msgstr "Supporto film"
 msgid "Add themes to Jellyfin movies."
 msgstr "Aggiungi temi ai film di Jellyfin."
 
-#: src/common/config.py:264 src/common/config.py:367
+#: src/common/config.py:264 src/common/config.py:374
 msgid "Series support"
 msgstr "Supporto serie"
 
@@ -212,7 +212,7 @@ msgstr "Supporto serie"
 msgid "Add themes to Jellyfin series."
 msgstr "Aggiungi temi alla serie Jellyfin."
 
-#: src/common/config.py:268 src/common/config.py:355 web/templates/home.html:31
+#: src/common/config.py:268 src/common/config.py:362 web/templates/home.html:31
 msgid "Collections"
 msgstr "Raccolte"
 
@@ -325,134 +325,142 @@ msgid "Themerr settings."
 msgstr "Impostazioni Themerr."
 
 #: src/common/config.py:349
+msgid "Scan on startup"
+msgstr "Scansiona all'avvio"
+
+#: src/common/config.py:350
+msgid "Run the theme scan when Themerr starts. Scheduled scans still run when this is disabled. Changes apply the next time Themerr starts."
+msgstr "Eseguire la scansione del tema all'avvio di Themerr. Scansioni pianificate ancora in esecuzione quando questo è disabilitato. Le modifiche si applicano al prossimo avvio di Themerr."
+
+#: src/common/config.py:356
 msgid "Themerr Enabled"
 msgstr "Themerr Abilitato"
 
-#: src/common/config.py:350
+#: src/common/config.py:357
 msgid "When enabled, Themerr will attempt to update themes."
 msgstr "Se abilitata, Themerr tenterà di aggiornare i temi."
 
-#: src/common/config.py:356
+#: src/common/config.py:363
 msgid "Add themes to collections."
 msgstr "Aggiungi temi alle collezioni."
 
-#: src/common/config.py:362
+#: src/common/config.py:369
 msgid "Add themes to movies using the Plex Movie agent."
 msgstr "Aggiungi temi ai film usando l'agente Plex Movie."
 
-#: src/common/config.py:368
+#: src/common/config.py:375
 msgid "Add themes to series using the Plex Series agent."
 msgstr "Aggiungi temi alla serie usando l'agente Plex Series."
 
-#: src/common/config.py:373
+#: src/common/config.py:380
 msgid "Overwrite Plex themes"
 msgstr "Sovrascrivi temi Plex"
 
-#: src/common/config.py:374
+#: src/common/config.py:381
 msgid "When enabled, Themerr will overwrite themes provided by Plex."
 msgstr "Quando abilitato, Themerr sovrascriverà i temi forniti da Plex."
 
-#: src/common/config.py:379
+#: src/common/config.py:386
 msgid "Prefer MP4A AAC Codec"
 msgstr "Preferisci Il Codec Mp4A Aac"
 
-#: src/common/config.py:380
+#: src/common/config.py:387
 msgid "This can improve theme compatibility with Apple devices."
 msgstr "Questo può migliorare la compatibilità del tema con i dispositivi Apple."
 
-#: src/common/config.py:385
+#: src/common/config.py:392
 msgid "Remove unused themes"
 msgstr "Rimuovi temi inutilizzati"
 
-#: src/common/config.py:386
+#: src/common/config.py:393
 msgid "Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "Consente di liberare spazio nella cartella dei metadati Plex. Questa opzione richiede che il percorso \"Cartella dati Plex\" sia impostato"
 
-#: src/common/config.py:392
+#: src/common/config.py:399
 msgid "Remove unused art"
 msgstr "Rimuovi arte inutilizzata"
 
-#: src/common/config.py:393 src/common/config.py:401
+#: src/common/config.py:400 src/common/config.py:408
 msgid "Applies to collection. Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "Applica alla raccolta. Consente di liberare spazio nella cartella dei metadati Plex. Questa opzione richiede che il percorso \"Cartella dati Plex\" sia impostato"
 
-#: src/common/config.py:400
+#: src/common/config.py:407
 msgid "Remove unused posters"
 msgstr "Rimuovi poster inutilizzati"
 
-#: src/common/config.py:408
+#: src/common/config.py:415
 msgid "Collection metadata"
 msgstr "Metadati di raccolta"
 
-#: src/common/config.py:409
+#: src/common/config.py:416
 msgid "Update collection metadata (poster, art, and summary) during scheduled update."
 msgstr "Aggiorna i metadati della collezione (poster, arte, e riepilogo) durante l'aggiornamento pianificato."
 
-#: src/common/config.py:414
+#: src/common/config.py:421
 msgid "Ignore locked fields."
 msgstr "Ignora i campi bloccati."
 
-#: src/common/config.py:415
+#: src/common/config.py:422
 msgid "If you used Themerr v2024.813.13709 or lower, you may need to enable this to update items."
 msgstr "Se hai usato Themerr v2024.813.13709 o inferiore, potrebbe essere necessario abilitare questo per aggiornare gli elementi."
 
-#: src/common/config.py:421
+#: src/common/config.py:428
 msgid "Ignored library IDs"
 msgstr "Id libreria ignorati"
 
-#: src/common/config.py:422
+#: src/common/config.py:429
 msgid "Comma-separated library IDs to exclude from scheduled updates. IDs appear on Home."
 msgstr "ID libreria separati da virgole da escludere dagli aggiornamenti pianificati. Gli ID appaiono su Home."
 
-#: src/common/config.py:428
+#: src/common/config.py:435
 msgid "Update themes interval"
 msgstr "Intervallo temi di aggiornamento"
 
-#: src/common/config.py:429
+#: src/common/config.py:436
 msgid "Interval for automatic update task, in minutes (min: 15)."
 msgstr "Intervallo per attività di aggiornamento automatico, in minuti (min: 15)."
 
-#: src/common/config.py:436
+#: src/common/config.py:443
 msgid "Update database cache interval"
 msgstr "Aggiorna intervallo cache database"
 
-#: src/common/config.py:437
+#: src/common/config.py:444
 msgid "Interval for database cache update task, in minutes (min: 15)."
 msgstr "Intervallo per il compito di aggiornamento della cache del database, in minuti (min: 15)."
 
-#: src/common/config.py:444
+#: src/common/config.py:451
 msgid "PlexAPI timeout"
 msgstr "Timeout PlexAPI"
 
-#: src/common/config.py:445
+#: src/common/config.py:452
 msgid "Increase this slightly if you experience timeouts when adding themes. (min: 1)"
 msgstr "Aumentare leggermente questo se si verificano timeout quando si aggiungono temi. (min: 1)"
 
-#: src/common/config.py:452
+#: src/common/config.py:459
 msgid "Theme upload retries"
 msgstr "Riprova caricamento tema"
 
-#: src/common/config.py:453
+#: src/common/config.py:460
 msgid "If uploading themes fail, retry this many times. (min: 0)"
 msgstr "Se il caricamento dei temi fallisce, riprova molte volte (min: 0)"
 
-#: src/common/config.py:460
+#: src/common/config.py:467
 msgid "Multiprocessing thread count"
 msgstr "Conteggio thread multielaborazione"
 
-#: src/common/config.py:461
+#: src/common/config.py:468
 msgid "The number of threads to use when adding themes. Restart required. (min: 1)"
 msgstr "Il numero di thread da usare quando si aggiungono i temi. Riavvio richiesto. (min: 1)"
 
-#: src/common/config.py:469
+#: src/common/config.py:476
 msgid "YouTube Cookies"
 msgstr "Cookie Su YouTube"
 
-#: src/common/config.py:471
+#: src/common/config.py:478
 msgid "Optional: export youtube.com cookies with Get cookies.txt LOCALLY using its JSON format, then paste the entire JSON array here and save. Saved cookies are encrypted and masked. Select the eye icon to reveal them. Leave this blank to keep them, or select Clear saved cookies to remove them."
 msgstr "Opzionale: esporta i cookie youtube.com con Get cookies.txt LOCALLY utilizzando il suo formato JSON, quindi incolla l'intero array JSON qui e salva. I cookie salvati sono crittografati e mascherati. Selezionare l'icona dell'occhio per rivelarli. Lascia questo vuoto per tenerli, o seleziona Cancella i cookie salvati per rimuoverli."
 
-#: src/common/config.py:478
+#: src/common/config.py:485
 msgid "Cookie export instructions"
 msgstr "Istruzioni per l'esportazione dei cookie"
 
@@ -838,7 +846,7 @@ msgstr "Nessun errore di elaborazione registrato. Tutto silenzioso qui."
 msgid "ID"
 msgstr "ID"
 
-#: web/templates/activity.html:8 web/templates/home.html:80
+#: web/templates/activity.html:8 web/templates/home.html:81
 msgid "Outdated from ThemerrDB"
 msgstr "Andato da ThemerrDB"
 
@@ -1359,19 +1367,23 @@ msgstr "TMDB ID unavailable"
 msgid "Theme not installed yet"
 msgstr "Tema non ancora installato"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:80
+msgid "Retry"
+msgstr "Riprova"
+
+#: web/templates/home.html:83
 msgid "Edit"
 msgstr "Modifica"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:83
 msgid "Add"
 msgstr "Aggiungi"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "No titles match."
 msgstr "Nessun titolo corrisponde."
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "Try another search or reset your filters."
 msgstr "Prova un'altra ricerca o reimposta i filtri."
 

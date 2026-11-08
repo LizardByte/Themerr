@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-File: /[LizardByte.Themerr] master/themerr.po\n"
 "X-Crowdin-File-ID: 6533\n"
 "Language: ja_JP\n"
-"PO-Revision-Date: 2026-10-10 01:56\n"
+"PO-Revision-Date: 2026-11-08 01:34\n"
 
 #: src/common/config.py:86
 msgid "Info"
@@ -196,7 +196,7 @@ msgstr "Jellyfin"
 msgid "Jellyfin theme processing settings. Connections are managed on the Servers page."
 msgstr "Jellyfinテーマ処理の設定 接続はformat@@0ページで管理されます。"
 
-#: src/common/config.py:260 src/common/config.py:361
+#: src/common/config.py:260 src/common/config.py:368
 msgid "Movie support"
 msgstr "ムービーサポート"
 
@@ -204,7 +204,7 @@ msgstr "ムービーサポート"
 msgid "Add themes to Jellyfin movies."
 msgstr "Jellyfin映画にテーマを追加します。"
 
-#: src/common/config.py:264 src/common/config.py:367
+#: src/common/config.py:264 src/common/config.py:374
 msgid "Series support"
 msgstr "シリーズのサポート"
 
@@ -212,7 +212,7 @@ msgstr "シリーズのサポート"
 msgid "Add themes to Jellyfin series."
 msgstr "Jellyfinシリーズにテーマを追加します。"
 
-#: src/common/config.py:268 src/common/config.py:355 web/templates/home.html:31
+#: src/common/config.py:268 src/common/config.py:362 web/templates/home.html:31
 msgid "Collections"
 msgstr "コレクション"
 
@@ -325,134 +325,142 @@ msgid "Themerr settings."
 msgstr "Themerrの設定"
 
 #: src/common/config.py:349
+msgid "Scan on startup"
+msgstr "起動時にスキャン"
+
+#: src/common/config.py:350
+msgid "Run the theme scan when Themerr starts. Scheduled scans still run when this is disabled. Changes apply the next time Themerr starts."
+msgstr "Themerrが起動したときにテーマスキャンを実行します。Themerrが無効になったときにスケジュールされたスキャンはまだ実行されます。次回Themerrが起動したときに変更が適用されます。"
+
+#: src/common/config.py:356
 msgid "Themerr Enabled"
 msgstr "Themerr 有効"
 
-#: src/common/config.py:350
+#: src/common/config.py:357
 msgid "When enabled, Themerr will attempt to update themes."
 msgstr "有効にすると、Themerrはテーマを更新しようとします。"
 
-#: src/common/config.py:356
+#: src/common/config.py:363
 msgid "Add themes to collections."
 msgstr "テーマをコレクションに追加"
 
-#: src/common/config.py:362
+#: src/common/config.py:369
 msgid "Add themes to movies using the Plex Movie agent."
 msgstr "format@@0エージェントを使用してテーマをムービーに追加します。"
 
-#: src/common/config.py:368
+#: src/common/config.py:375
 msgid "Add themes to series using the Plex Series agent."
 msgstr "プレックスシリーズエージェントを使用して、テーマをシリーズに追加します。"
 
-#: src/common/config.py:373
+#: src/common/config.py:380
 msgid "Overwrite Plex themes"
 msgstr "プレックスのテーマを上書き"
 
-#: src/common/config.py:374
+#: src/common/config.py:381
 msgid "When enabled, Themerr will overwrite themes provided by Plex."
 msgstr "有効にすると、ThemerrはPlexが提供するテーマを上書きします。"
 
-#: src/common/config.py:379
+#: src/common/config.py:386
 msgid "Prefer MP4A AAC Codec"
 msgstr "MP4A AACコーデックを優先"
 
-#: src/common/config.py:380
+#: src/common/config.py:387
 msgid "This can improve theme compatibility with Apple devices."
 msgstr "これにより、Appleデバイスとのテーマ互換性が向上します。"
 
-#: src/common/config.py:385
+#: src/common/config.py:392
 msgid "Remove unused themes"
 msgstr "未使用のテーマを削除"
 
-#: src/common/config.py:386
+#: src/common/config.py:393
 msgid "Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "プレックス メタデータ ディレクトリの空き容量を増やします。このオプションには、\"プレックス データ ディレクトリ\" パスが設定されている必要があります。"
 
-#: src/common/config.py:392
+#: src/common/config.py:399
 msgid "Remove unused art"
 msgstr "未使用のアートを削除"
 
-#: src/common/config.py:393 src/common/config.py:401
+#: src/common/config.py:400 src/common/config.py:408
 msgid "Applies to collection. Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "コレクションに適用します。プレックスのメタデータディレクトリ内の領域を解放します。このオプションは、「プレックスデータディレクトリ」パスが設定されている必要があります。"
 
-#: src/common/config.py:400
+#: src/common/config.py:407
 msgid "Remove unused posters"
 msgstr "未使用のポスターを削除"
 
-#: src/common/config.py:408
+#: src/common/config.py:415
 msgid "Collection metadata"
 msgstr "コレクションメタデータ"
 
-#: src/common/config.py:409
+#: src/common/config.py:416
 msgid "Update collection metadata (poster, art, and summary) during scheduled update."
 msgstr "スケジュールされた更新中にコレクションのメタデータ (ポスター、アート、概要) を更新します。"
 
-#: src/common/config.py:414
+#: src/common/config.py:421
 msgid "Ignore locked fields."
 msgstr "ロックされたフィールドを無視します。"
 
-#: src/common/config.py:415
+#: src/common/config.py:422
 msgid "If you used Themerr v2024.813.13709 or lower, you may need to enable this to update items."
 msgstr "Themerr v2024.813.13709以下を使用している場合は、これを有効にしてアイテムを更新する必要がある場合があります。"
 
-#: src/common/config.py:421
+#: src/common/config.py:428
 msgid "Ignored library IDs"
 msgstr "無視されたライブラリ ID"
 
-#: src/common/config.py:422
+#: src/common/config.py:429
 msgid "Comma-separated library IDs to exclude from scheduled updates. IDs appear on Home."
 msgstr "スケジュールされた更新から除外するカンマ区切りのライブラリIDがホームに表示されます。"
 
-#: src/common/config.py:428
+#: src/common/config.py:435
 msgid "Update themes interval"
 msgstr "テーマの間隔を更新"
 
-#: src/common/config.py:429
+#: src/common/config.py:436
 msgid "Interval for automatic update task, in minutes (min: 15)."
 msgstr "自動更新タスクの間隔(分:15)。"
 
-#: src/common/config.py:436
+#: src/common/config.py:443
 msgid "Update database cache interval"
 msgstr "データベースキャッシュの間隔を更新"
 
-#: src/common/config.py:437
+#: src/common/config.py:444
 msgid "Interval for database cache update task, in minutes (min: 15)."
 msgstr "データベースキャッシュの更新タスクの間隔(分:15)。"
 
-#: src/common/config.py:444
+#: src/common/config.py:451
 msgid "PlexAPI timeout"
 msgstr "PlexAPI タイムアウト"
 
-#: src/common/config.py:445
+#: src/common/config.py:452
 msgid "Increase this slightly if you experience timeouts when adding themes. (min: 1)"
 msgstr "テーマの追加時にタイムアウトが発生した場合は少し増やします。(min: 1)"
 
-#: src/common/config.py:452
+#: src/common/config.py:459
 msgid "Theme upload retries"
 msgstr "テーマのアップロード再試行中"
 
-#: src/common/config.py:453
+#: src/common/config.py:460
 msgid "If uploading themes fail, retry this many times. (min: 0)"
 msgstr "テーマのアップロードに失敗した場合は、何度も再試行してください。(min: 0)"
 
-#: src/common/config.py:460
+#: src/common/config.py:467
 msgid "Multiprocessing thread count"
 msgstr "マルチプロセッシングスレッド数"
 
-#: src/common/config.py:461
+#: src/common/config.py:468
 msgid "The number of threads to use when adding themes. Restart required. (min: 1)"
 msgstr "テーマを追加するときに使用するスレッド数です。再起動が必要です。(min: 1)"
 
-#: src/common/config.py:469
+#: src/common/config.py:476
 msgid "YouTube Cookies"
 msgstr "YouTube Cookie"
 
-#: src/common/config.py:471
+#: src/common/config.py:478
 msgid "Optional: export youtube.com cookies with Get cookies.txt LOCALLY using its JSON format, then paste the entire JSON array here and save. Saved cookies are encrypted and masked. Select the eye icon to reveal them. Leave this blank to keep them, or select Clear saved cookies to remove them."
 msgstr "必要に応じて、youtube.comのCookieをJSON形式で取得します。そして、ここにJSON配列全体を貼り付けて保存します。 保存されたクッキーは暗号化されマスクされます。アイアイコンを選択して明らかにします。 空白のままにするか、保存されたクッキーを消去するを選択して削除します。"
 
-#: src/common/config.py:478
+#: src/common/config.py:485
 msgid "Cookie export instructions"
 msgstr "Cookie のエクスポート手順"
 
@@ -838,7 +846,7 @@ msgstr "処理の失敗が記録されていません。ここではすべて静
 msgid "ID"
 msgstr "ID"
 
-#: web/templates/activity.html:8 web/templates/home.html:80
+#: web/templates/activity.html:8 web/templates/home.html:81
 msgid "Outdated from ThemerrDB"
 msgstr "ThemerrDB から古いものです"
 
@@ -1359,19 +1367,23 @@ msgstr "TMDB ID unavailable"
 msgid "Theme not installed yet"
 msgstr "テーマはまだインストールされていません"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:80
+msgid "Retry"
+msgstr "再試行する"
+
+#: web/templates/home.html:83
 msgid "Edit"
 msgstr "編集"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:83
 msgid "Add"
 msgstr "追加"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "No titles match."
 msgstr "タイトルが一致しません。"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "Try another search or reset your filters."
 msgstr "別の検索を試みるか、フィルターをリセットしてください。"
 
