@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-File: /[LizardByte.Themerr] master/themerr.po\n"
 "X-Crowdin-File-ID: 6533\n"
 "Language: ko_KR\n"
-"PO-Revision-Date: 2026-10-10 00:43\n"
+"PO-Revision-Date: 2026-11-08 01:17\n"
 
 #: src/common/config.py:86
 msgid "Info"
@@ -196,7 +196,7 @@ msgstr "Jellyfin"
 msgid "Jellyfin theme processing settings. Connections are managed on the Servers page."
 msgstr "Jellyfin 테마 처리 설정. 연결 설정은 ‘서버’ 페이지에서 관리됩니다."
 
-#: src/common/config.py:260 src/common/config.py:361
+#: src/common/config.py:260 src/common/config.py:368
 msgid "Movie support"
 msgstr "영화 지원"
 
@@ -204,7 +204,7 @@ msgstr "영화 지원"
 msgid "Add themes to Jellyfin movies."
 msgstr "Jellyfin 영화에 테마를 추가하세요."
 
-#: src/common/config.py:264 src/common/config.py:367
+#: src/common/config.py:264 src/common/config.py:374
 msgid "Series support"
 msgstr "시리즈 지원"
 
@@ -212,7 +212,7 @@ msgstr "시리즈 지원"
 msgid "Add themes to Jellyfin series."
 msgstr "Jellyfin 시리즈에 테마 추가하기."
 
-#: src/common/config.py:268 src/common/config.py:355 web/templates/home.html:31
+#: src/common/config.py:268 src/common/config.py:362 web/templates/home.html:31
 msgid "Collections"
 msgstr "컬렉션"
 
@@ -325,134 +325,142 @@ msgid "Themerr settings."
 msgstr "Themerr 설정."
 
 #: src/common/config.py:349
+msgid "Scan on startup"
+msgstr "시작 시 스캔"
+
+#: src/common/config.py:350
+msgid "Run the theme scan when Themerr starts. Scheduled scans still run when this is disabled. Changes apply the next time Themerr starts."
+msgstr "Themerr가 시작될 때 테마 스캔을 실행합니다. 이 기능이 비활성화되어 있어도 예약된 스캔은 정상적으로 실행됩니다. 변경 사항은 다음에 Themerr가 시작될 때 적용됩니다."
+
+#: src/common/config.py:356
 msgid "Themerr Enabled"
 msgstr "Themerr 활성화됨"
 
-#: src/common/config.py:350
+#: src/common/config.py:357
 msgid "When enabled, Themerr will attempt to update themes."
 msgstr "이 기능이 활성화되면 Themerr는 테마를 업데이트하려고 시도합니다."
 
-#: src/common/config.py:356
+#: src/common/config.py:363
 msgid "Add themes to collections."
 msgstr "컬렉션에 테마를 추가하세요."
 
-#: src/common/config.py:362
+#: src/common/config.py:369
 msgid "Add themes to movies using the Plex Movie agent."
 msgstr "Plex Movie 에이전트를 사용하여 영화에 테마를 추가하세요."
 
-#: src/common/config.py:368
+#: src/common/config.py:375
 msgid "Add themes to series using the Plex Series agent."
 msgstr "Plex 시리즈 에이전트를 사용하여 시리즈에 테마를 추가하세요."
 
-#: src/common/config.py:373
+#: src/common/config.py:380
 msgid "Overwrite Plex themes"
 msgstr "Plex 테마 덮어쓰기"
 
-#: src/common/config.py:374
+#: src/common/config.py:381
 msgid "When enabled, Themerr will overwrite themes provided by Plex."
 msgstr "이 기능이 활성화되면 Themerr는 Plex에서 제공하는 테마를 덮어씁니다."
 
-#: src/common/config.py:379
+#: src/common/config.py:386
 msgid "Prefer MP4A AAC Codec"
 msgstr "MP4A AAC 코덱을 선호합니다"
 
-#: src/common/config.py:380
+#: src/common/config.py:387
 msgid "This can improve theme compatibility with Apple devices."
 msgstr "이를 통해 Apple 기기와의 테마 호환성을 높일 수 있습니다."
 
-#: src/common/config.py:385
+#: src/common/config.py:392
 msgid "Remove unused themes"
 msgstr "사용하지 않는 테마 삭제하기"
 
-#: src/common/config.py:386
+#: src/common/config.py:393
 msgid "Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "Plex 메타데이터 디렉터리의 공간을 확보합니다. 이 옵션을 사용하려면 “Plex 데이터 디렉터리” 경로가 설정되어 있어야 합니다."
 
-#: src/common/config.py:392
+#: src/common/config.py:399
 msgid "Remove unused art"
 msgstr "사용하지 않는 아트 제거하기"
 
-#: src/common/config.py:393 src/common/config.py:401
+#: src/common/config.py:400 src/common/config.py:408
 msgid "Applies to collection. Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "컬렉션에 적용됩니다. Plex 메타데이터 디렉터리의 공간을 확보합니다. 이 옵션을 사용하려면 “Plex 데이터 디렉터리” 경로가 설정되어 있어야 합니다."
 
-#: src/common/config.py:400
+#: src/common/config.py:407
 msgid "Remove unused posters"
 msgstr "사용하지 않는 포스터를 치우세요"
 
-#: src/common/config.py:408
+#: src/common/config.py:415
 msgid "Collection metadata"
 msgstr "컬렉션 메타데이터"
 
-#: src/common/config.py:409
+#: src/common/config.py:416
 msgid "Update collection metadata (poster, art, and summary) during scheduled update."
 msgstr "예정된 업데이트 시점에 컬렉션 메타데이터(포스터, 삽화, 요약)를 업데이트합니다."
 
-#: src/common/config.py:414
+#: src/common/config.py:421
 msgid "Ignore locked fields."
 msgstr "잠긴 필드는 무시합니다."
 
-#: src/common/config.py:415
+#: src/common/config.py:422
 msgid "If you used Themerr v2024.813.13709 or lower, you may need to enable this to update items."
 msgstr "Themerr v2024.813.13709 이하 버전을 사용 중이라면, 항목을 업데이트하기 위해 이 기능을 활성화해야 할 수도 있습니다."
 
-#: src/common/config.py:421
+#: src/common/config.py:428
 msgid "Ignored library IDs"
 msgstr "무시된 라이브러리 ID"
 
-#: src/common/config.py:422
+#: src/common/config.py:429
 msgid "Comma-separated library IDs to exclude from scheduled updates. IDs appear on Home."
 msgstr "예정된 업데이트에서 제외할 라이브러리 ID를 쉼표로 구분하여 나열합니다. ID는 ‘홈’ 화면에 표시됩니다."
 
-#: src/common/config.py:428
+#: src/common/config.py:435
 msgid "Update themes interval"
 msgstr "테마 업데이트 주기"
 
-#: src/common/config.py:429
+#: src/common/config.py:436
 msgid "Interval for automatic update task, in minutes (min: 15)."
 msgstr "자동 업데이트 작업의 간격(분 단위, 최소 15분)."
 
-#: src/common/config.py:436
+#: src/common/config.py:443
 msgid "Update database cache interval"
 msgstr "데이터베이스 캐시 간격 업데이트"
 
-#: src/common/config.py:437
+#: src/common/config.py:444
 msgid "Interval for database cache update task, in minutes (min: 15)."
 msgstr "데이터베이스 캐시 업데이트 작업의 간격(분 단위, 최소 15분)."
 
-#: src/common/config.py:444
+#: src/common/config.py:451
 msgid "PlexAPI timeout"
 msgstr "PlexAPI 시간 초과"
 
-#: src/common/config.py:445
+#: src/common/config.py:452
 msgid "Increase this slightly if you experience timeouts when adding themes. (min: 1)"
 msgstr "테마를 추가할 때 타임아웃이 발생하면 이 값을 약간 늘리세요. (최소: 1)"
 
-#: src/common/config.py:452
+#: src/common/config.py:459
 msgid "Theme upload retries"
 msgstr "테마 업로드 재시도"
 
-#: src/common/config.py:453
+#: src/common/config.py:460
 msgid "If uploading themes fail, retry this many times. (min: 0)"
 msgstr "테마 업로드에 실패할 경우, 이 횟수만큼 다시 시도합니다. (최소: 0)"
 
-#: src/common/config.py:460
+#: src/common/config.py:467
 msgid "Multiprocessing thread count"
 msgstr "멀티프로세싱 스레드 수"
 
-#: src/common/config.py:461
+#: src/common/config.py:468
 msgid "The number of threads to use when adding themes. Restart required. (min: 1)"
 msgstr "테마를 추가할 때 사용할 스레드 수입니다. 재시작이 필요합니다. (최소: 1)"
 
-#: src/common/config.py:469
+#: src/common/config.py:476
 msgid "YouTube Cookies"
 msgstr "YouTube 쿠키"
 
-#: src/common/config.py:471
+#: src/common/config.py:478
 msgid "Optional: export youtube.com cookies with Get cookies.txt LOCALLY using its JSON format, then paste the entire JSON array here and save. Saved cookies are encrypted and masked. Select the eye icon to reveal them. Leave this blank to keep them, or select Clear saved cookies to remove them."
 msgstr "선택 사항: ‘Get cookies.txt’ 기능을 사용하여 youtube.com 쿠키를 JSON 형식으로 로컬에 내보낸 다음, 전체 JSON 배열을 여기에 붙여넣고 저장하세요. 저장된 쿠키는 암호화 및 마스킹 처리되어 있습니다. 눈 모양 아이콘을 선택하면 내용을 확인할 수 있습니다. 쿠키를 유지하려면 이 항목을 비워 두거나, ‘저장된 쿠키 지우기’를 선택하여 삭제하세요."
 
-#: src/common/config.py:478
+#: src/common/config.py:485
 msgid "Cookie export instructions"
 msgstr "쿠키 내보내기 방법"
 
@@ -838,7 +846,7 @@ msgstr "처리 오류는 기록되지 않았습니다. 이곳은 별다른 이�
 msgid "ID"
 msgstr "ID"
 
-#: web/templates/activity.html:8 web/templates/home.html:80
+#: web/templates/activity.html:8 web/templates/home.html:81
 msgid "Outdated from ThemerrDB"
 msgstr "ThemerrDB에서 더 이상 사용되지 않음"
 
@@ -1359,19 +1367,23 @@ msgstr "TMDB ID를 확인할 수 없습니다."
 msgid "Theme not installed yet"
 msgstr "테마가 아직 설치되지 않았습니다"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:80
+msgid "Retry"
+msgstr ""
+
+#: web/templates/home.html:83
 msgid "Edit"
 msgstr "편집"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:83
 msgid "Add"
 msgstr "추가"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "No titles match."
 msgstr "일치하는 제목이 없습니다."
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "Try another search or reset your filters."
 msgstr "다른 검색어를 입력하거나 필터를 초기화해 보세요."
 
