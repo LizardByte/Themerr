@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-File: /[LizardByte.Themerr] master/themerr.po\n"
 "X-Crowdin-File-ID: 6533\n"
 "Language: zh_CN\n"
-"PO-Revision-Date: 2026-10-10 01:56\n"
+"PO-Revision-Date: 2026-11-08 01:34\n"
 
 #: src/common/config.py:86
 msgid "Info"
@@ -196,7 +196,7 @@ msgstr "Jellyfin"
 msgid "Jellyfin theme processing settings. Connections are managed on the Servers page."
 msgstr "Jellyfin 主题处理设置。连接管理在服务器页面上。"
 
-#: src/common/config.py:260 src/common/config.py:361
+#: src/common/config.py:260 src/common/config.py:368
 msgid "Movie support"
 msgstr "电影支持"
 
@@ -204,7 +204,7 @@ msgstr "电影支持"
 msgid "Add themes to Jellyfin movies."
 msgstr "将主题添加到 Jellyfin 电影。"
 
-#: src/common/config.py:264 src/common/config.py:367
+#: src/common/config.py:264 src/common/config.py:374
 msgid "Series support"
 msgstr "系列支持"
 
@@ -212,7 +212,7 @@ msgstr "系列支持"
 msgid "Add themes to Jellyfin series."
 msgstr "将主题添加到 Jellyfin 系列中。"
 
-#: src/common/config.py:268 src/common/config.py:355 web/templates/home.html:31
+#: src/common/config.py:268 src/common/config.py:362 web/templates/home.html:31
 msgid "Collections"
 msgstr "合集"
 
@@ -325,134 +325,142 @@ msgid "Themerr settings."
 msgstr "星历设置。"
 
 #: src/common/config.py:349
+msgid "Scan on startup"
+msgstr "启动时扫描"
+
+#: src/common/config.py:350
+msgid "Run the theme scan when Themerr starts. Scheduled scans still run when this is disabled. Changes apply the next time Themerr starts."
+msgstr "在星历开始时运行主题扫描。当计划扫描被禁用时仍在运行。更改应用于下次的星历开始。"
+
+#: src/common/config.py:356
 msgid "Themerr Enabled"
 msgstr "星历已启用"
 
-#: src/common/config.py:350
+#: src/common/config.py:357
 msgid "When enabled, Themerr will attempt to update themes."
 msgstr "启用时，Themer将尝试更新主题。"
 
-#: src/common/config.py:356
+#: src/common/config.py:363
 msgid "Add themes to collections."
 msgstr "将主题添加到收藏中。"
 
-#: src/common/config.py:362
+#: src/common/config.py:369
 msgid "Add themes to movies using the Plex Movie agent."
 msgstr "使用Plex电影代理将主题添加到电影中。"
 
-#: src/common/config.py:368
+#: src/common/config.py:375
 msgid "Add themes to series using the Plex Series agent."
 msgstr "使用Plex系列代理添加主题到系列中。"
 
-#: src/common/config.py:373
+#: src/common/config.py:380
 msgid "Overwrite Plex themes"
 msgstr "覆盖Plex主题"
 
-#: src/common/config.py:374
+#: src/common/config.py:381
 msgid "When enabled, Themerr will overwrite themes provided by Plex."
 msgstr "如果启用，Themer将覆盖由Plex提供的主题。"
 
-#: src/common/config.py:379
+#: src/common/config.py:386
 msgid "Prefer MP4A AAC Codec"
 msgstr "优先使用 MP4A AAC 解码器"
 
-#: src/common/config.py:380
+#: src/common/config.py:387
 msgid "This can improve theme compatibility with Apple devices."
 msgstr "这可以提高主题与苹果设备的兼容性。"
 
-#: src/common/config.py:385
+#: src/common/config.py:392
 msgid "Remove unused themes"
 msgstr "删除未使用的主题"
 
-#: src/common/config.py:386
+#: src/common/config.py:393
 msgid "Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "在您的Plex元数据目录中空闲空间。此选项需要设置\"Plex数据目录\"路径"
 
-#: src/common/config.py:392
+#: src/common/config.py:399
 msgid "Remove unused art"
 msgstr "移除未使用的艺像"
 
-#: src/common/config.py:393 src/common/config.py:401
+#: src/common/config.py:400 src/common/config.py:408
 msgid "Applies to collection. Frees up space in your Plex metadata directory. This option requires that the \"Plex data directory\" path is set"
 msgstr "应用于收藏。在您的Plex元数据目录中释放空间。此选项需要设置\"Plex数据目录\"路径"
 
-#: src/common/config.py:400
+#: src/common/config.py:407
 msgid "Remove unused posters"
 msgstr "删除未使用的海报"
 
-#: src/common/config.py:408
+#: src/common/config.py:415
 msgid "Collection metadata"
 msgstr "集合元数据"
 
-#: src/common/config.py:409
+#: src/common/config.py:416
 msgid "Update collection metadata (poster, art, and summary) during scheduled update."
 msgstr "在预定的更新过程中更新收藏元数据(海报、艺术和摘要)。"
 
-#: src/common/config.py:414
+#: src/common/config.py:421
 msgid "Ignore locked fields."
 msgstr "忽略锁定的字段。"
 
-#: src/common/config.py:415
+#: src/common/config.py:422
 msgid "If you used Themerr v2024.813.13709 or lower, you may need to enable this to update items."
 msgstr "如果您使用 Themerr v2024.813.13709 或更低，您可能需要启用此选项来更新项目。"
 
-#: src/common/config.py:421
+#: src/common/config.py:428
 msgid "Ignored library IDs"
 msgstr "忽略的库 ID"
 
-#: src/common/config.py:422
+#: src/common/config.py:429
 msgid "Comma-separated library IDs to exclude from scheduled updates. IDs appear on Home."
 msgstr "用于排除预定更新的逗号分隔的库ID。ID出现在主屏幕上。"
 
-#: src/common/config.py:428
+#: src/common/config.py:435
 msgid "Update themes interval"
 msgstr "更新主题间隔"
 
-#: src/common/config.py:429
+#: src/common/config.py:436
 msgid "Interval for automatic update task, in minutes (min: 15)."
 msgstr "自动更新任务的间隔，以分钟为单位(分钟：15分钟)。"
 
-#: src/common/config.py:436
+#: src/common/config.py:443
 msgid "Update database cache interval"
 msgstr "更新数据库缓存间隔"
 
-#: src/common/config.py:437
+#: src/common/config.py:444
 msgid "Interval for database cache update task, in minutes (min: 15)."
 msgstr "数据库缓存更新任务的间隔，以分钟为单位(分钟：15分钟)。"
 
-#: src/common/config.py:444
+#: src/common/config.py:451
 msgid "PlexAPI timeout"
 msgstr "PlexAPI 超时"
 
-#: src/common/config.py:445
+#: src/common/config.py:452
 msgid "Increase this slightly if you experience timeouts when adding themes. (min: 1)"
 msgstr "如果您在添加主题时遇到超时时间问题，请稍微增加。(最小：1)"
 
-#: src/common/config.py:452
+#: src/common/config.py:459
 msgid "Theme upload retries"
 msgstr "主题上传重试"
 
-#: src/common/config.py:453
+#: src/common/config.py:460
 msgid "If uploading themes fail, retry this many times. (min: 0)"
 msgstr "如果上传主题失败，请重试这么多次(最小：0)"
 
-#: src/common/config.py:460
+#: src/common/config.py:467
 msgid "Multiprocessing thread count"
 msgstr "多处理线程计数"
 
-#: src/common/config.py:461
+#: src/common/config.py:468
 msgid "The number of threads to use when adding themes. Restart required. (min: 1)"
 msgstr "添加主题时要使用的线程数。重启所需(最小：1)"
 
-#: src/common/config.py:469
+#: src/common/config.py:476
 msgid "YouTube Cookies"
 msgstr "YouTube Cookie"
 
-#: src/common/config.py:471
+#: src/common/config.py:478
 msgid "Optional: export youtube.com cookies with Get cookies.txt LOCALLY using its JSON format, then paste the entire JSON array here and save. Saved cookies are encrypted and masked. Select the eye icon to reveal them. Leave this blank to keep them, or select Clear saved cookies to remove them."
 msgstr "可选：使用 Get cookies.txt LOCALY 导出youtube.com cookie，然后将整个JSON 数组粘贴到此处，然后保存。 保存的 cookie 已加密并被掩盖。选择眼睛图标以显示它们。 留空以保留它们，或选择清除已保存的 cookie 以删除。"
 
-#: src/common/config.py:478
+#: src/common/config.py:485
 msgid "Cookie export instructions"
 msgstr "Cookie 导出说明"
 
@@ -838,7 +846,7 @@ msgstr "没有记录处理失败。此处保持静音。"
 msgid "ID"
 msgstr "ID"
 
-#: web/templates/activity.html:8 web/templates/home.html:80
+#: web/templates/activity.html:8 web/templates/home.html:81
 msgid "Outdated from ThemerrDB"
 msgstr "ThemerrDB 过期的"
 
@@ -1359,19 +1367,23 @@ msgstr "TMDB ID unavailable"
 msgid "Theme not installed yet"
 msgstr "主题尚未安装"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:80
+msgid "Retry"
+msgstr "重试"
+
+#: web/templates/home.html:83
 msgid "Edit"
 msgstr "编辑"
 
-#: web/templates/home.html:82
+#: web/templates/home.html:83
 msgid "Add"
 msgstr "添加"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "No titles match."
 msgstr "没有匹配的标题。"
 
-#: web/templates/home.html:89
+#: web/templates/home.html:90
 msgid "Try another search or reset your filters."
 msgstr "尝试另一次搜索或重置您的过滤器。"
 
