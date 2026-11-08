@@ -29,22 +29,22 @@
     },
     ".github/workflows/_release-notifier.yml": {
       "mode": "sync",
-      "sha": "7a30fa1a356c9113993059734de5905b1907e328",
+      "sha": "9667efbb1857e2d4ad1a044beeb7cd8ac40e551c",
       "permissions": "100644"
     },
     ".github/workflows/_top-issues.yml": {
       "mode": "sync",
-      "sha": "3072822c6a6832079de60fe8940953e008da165f",
+      "sha": "83a8bf0617b59cdb96245bac71232aabbb620d14",
       "permissions": "100644"
     },
     ".github/workflows/_update-changelog.yml": {
       "mode": "sync",
-      "sha": "314caf7ef30b645909d3567d1f6a7fd33c268cd0",
+      "sha": "e7b9dc6a758937c95f58fdd1b93cae619f0f5cbc",
       "permissions": "100644"
     },
     ".github/workflows/_update-docs.yml": {
       "mode": "sync",
-      "sha": "22c2a5175dcb70b44a80d0df25795e9a119dafe9",
+      "sha": "dd890841d5b656dc46beb5277250dde9be788c05",
       "permissions": "100644"
     },
     "renovate.json": {
