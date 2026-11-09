@@ -61,11 +61,11 @@ def server(identifier, total, installed, enabled=True):
 def test_stable_release_alert_survives_restart_and_is_rate_limited(desktop, monkeypatch):
     fetch = response(monkeypatch, release())
     notifications.check_for_releases()
-    assert fetch.call_args.args == (notifications._RELEASE_API + '/latest',)
+    assert fetch.call_args.args == ('https://api.github.com/repos/Themerr/Themerr/releases/latest',)
     assert fetch.call_args.kwargs['timeout'] == 10
     assert fetch.call_args.kwargs['allow_redirects'] is False
     assert '2026.1002.120000' in desktop.call_args.args[1]
-    assert '/tag/v2026.1002.120000' in desktop.call_args.args[1]
+    assert 'https://github.com/Themerr/Themerr/releases/tag/v2026.1002.120000' in desktop.call_args.args[1]
     storage.close()
     notifications.check_for_releases()
     fetch.assert_called_once()

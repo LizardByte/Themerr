@@ -232,7 +232,7 @@ class JellyfinMediaServer(MediaServer):
             return False
         data = helpers.json_get(
             cache_time=3600,
-            url=f'https://app.lizardbyte.dev/ThemerrDB/{details["database_type"]}/'
+            url=f'https://themerr.lizardbyte.dev/ThemerrDB/{details["database_type"]}/'
             f'{details["database"]}/{details["database_id"]}.json',
         )
         source = data.get('youtube_theme_url') if data else None

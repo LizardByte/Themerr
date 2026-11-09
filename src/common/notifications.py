@@ -23,8 +23,8 @@ _lock = RLock()
 _notifier = None
 _RELEASE_KEY = 'release_notifications'
 _COVERAGE_KEY = 'coverage_notifications'
-_RELEASE_API = 'https://api.github.com/repos/LizardByte/Themerr/releases'
-_RELEASE_PAGE = 'https://github.com/LizardByte/Themerr/releases'
+_RELEASE_API = 'https://api.github.com/repos/Themerr/Themerr/releases'
+_RELEASE_PAGE = 'https://github.com/Themerr/Themerr/releases'
 
 
 def _load(key: str) -> dict:

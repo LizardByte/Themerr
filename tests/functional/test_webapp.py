@@ -135,7 +135,7 @@ def test_branding_uses_the_project_asset_and_links(client):
     assert b'class="brand-logo"' in page
     assert b'src="/images/icon-default.png"' in page
     assert b'href="https://app.lizardbyte.dev/" target="_blank" rel="noopener noreferrer"' in page
-    assert b'href="https://github.com/LizardByte/Themerr" target="_blank" rel="noopener noreferrer"' in page
+    assert b'href="https://github.com/Themerr/Themerr" target="_blank" rel="noopener noreferrer"' in page
     assert b'href="https://docs.lizardbyte.dev/projects/themerr/latest/" target="_blank"' in page
     for body in re.findall(rb'<a\b[^>]*target="_blank"[^>]*>(.*?)</a>', page, re.DOTALL):
         assert b'data-lucide="arrow-up-right"' in body

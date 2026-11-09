@@ -68,7 +68,7 @@ def _refresh_database(database_type: str, databases: dict) -> None:
     """
     pages = helpers.json_get(
         cache_time=3600,
-        url=f'https://app.lizardbyte.dev/ThemerrDB/{database_type}/pages.json',
+        url=f'https://themerr.lizardbyte.dev/ThemerrDB/{database_type}/pages.json',
     )
     page_count = pages['pages']
 
@@ -78,7 +78,7 @@ def _refresh_database(database_type: str, databases: dict) -> None:
     for page in range(page_count):
         page_data = helpers.json_get(
             cache_time=3600,
-            url=f'https://app.lizardbyte.dev/ThemerrDB/{database_type}/all_page_{page + 1}.json',
+            url=f'https://themerr.lizardbyte.dev/ThemerrDB/{database_type}/all_page_{page + 1}.json',
         )
 
         for db in databases:

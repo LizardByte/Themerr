@@ -54,9 +54,9 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/LizardByte/Themerr"
-Repository = "https://github.com/LizardByte/Themerr"
-Issues = "https://github.com/LizardByte/Themerr/issues"
+Homepage = "https://github.com/Themerr/Themerr"
+Repository = "https://github.com/Themerr/Themerr"
+Issues = "https://github.com/Themerr/Themerr/issues"
 
 [tool.uv]
 package = false

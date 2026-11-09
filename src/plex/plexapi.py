@@ -274,7 +274,7 @@ def update_plex_item(rating_key: int) -> bool:
     try:
         data = helpers.json_get(
             cache_time=3600,
-            url=f'https://app.lizardbyte.dev/ThemerrDB/{database_type}/{database}/{database_id}.json',
+            url=f'https://themerr.lizardbyte.dev/ThemerrDB/{database_type}/{database}/{database_id}.json',
         )
     except Exception:
         log.exception(f'{item.ratingKey}: Error retrieving data from ThemerrDB')
@@ -879,7 +879,7 @@ def _collection_id_from_members(item: PlexPartialObject) -> Optional[str]:
         try:
             metadata = helpers.json_get(
                 cache_time=86400,
-                url=f'https://app.lizardbyte.dev/ThemerrDB/movies/{database}/{identifier}.json',
+                url=f'https://themerr.lizardbyte.dev/ThemerrDB/movies/{database}/{identifier}.json',
             )
             collection = metadata.get('belongs_to_collection') or {}
             collection_name = themerr_db._title_key(collection.get('name', '')).removesuffix(' collection')

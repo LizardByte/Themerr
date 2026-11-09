@@ -40,7 +40,7 @@ def babel_extract():
         '-F', os.path.join(script_dir, 'babel.cfg'),
         '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),
         '--sort-by-file',
-        f'--msgid-bugs-address=https://github.com/LizardByte/{project_name}/issues',
+        f'--msgid-bugs-address=https://github.com/Themerr/{project_name}/issues',
         f'--copyright-holder={project_name}',
         f'--project={project_name}',
         '--version=v0',

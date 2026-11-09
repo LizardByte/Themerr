@@ -1,5 +1,5 @@
 # issue url constants
-base_url = 'https://github.com/LizardByte/ThemerrDB/issues/new?assignees='
+base_url = 'https://github.com/Themerr/ThemerrDB/issues/new?assignees='
 issue_label = 'request-theme'
 issue_template = 'theme.yml'
 url_name = 'database_url'

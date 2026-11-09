@@ -116,7 +116,7 @@ def get_media_upload_path(item: PlexPartialObject, media_type: str) -> str:
     allowed_media_types = ['art', 'posters', 'themes']
     if media_type not in allowed_media_types:
         raise ValueError(
-            'This error should be reported to https://github.com/LizardByte/Themerr/issues;'
+            'This error should be reported to https://github.com/Themerr/Themerr/issues;'
             f'media_type must be one of: {allowed_media_types}'
         )
 

@@ -28,7 +28,17 @@ def test_update_cache_and_lookup(monkeypatch):
     monkeypatch.setattr(themerr_db, 'last_cache_update', 0)
 
     themerr_db.update_cache()
-    assert len(calls) == 9
+    assert calls == [
+        'https://themerr.lizardbyte.dev/ThemerrDB/movies/pages.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/movies/all_page_1.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/movies/all_page_2.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/movie_collections/pages.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/movie_collections/all_page_1.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/movie_collections/all_page_2.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/tv_shows/pages.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/tv_shows/all_page_1.json',
+        'https://themerr.lizardbyte.dev/ThemerrDB/tv_shows/all_page_2.json',
+    ]
     assert themerr_db.item_exists('movies', 'themoviedb', 123)
     assert themerr_db.item_exists('movies', 'imdb', 'tt123')
     assert themerr_db.find_movie_id_by_imdb('tt123') == 123

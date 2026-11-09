@@ -12,13 +12,13 @@
         <nav class="secondary-nav" aria-label="{{ _('Resources') }}">
             <a data-workspace-link href="{{ url_for('api_documentation') }}"><i data-lucide="file-code"></i>{{ _('API documentation') }}</a>
             <a href="{{ documentation_url }}" target="_blank" rel="noopener noreferrer"><i data-lucide="book-open-text"></i>{{ _('Documentation') }}<i data-lucide="arrow-up-right" class="trailing-icon"></i></a>
-            <a href="https://github.com/LizardByte/ThemerrDB" target="_blank" rel="noopener noreferrer"><i data-lucide="heart"></i>{{ _('Contribute a theme') }}<i data-lucide="arrow-up-right" class="trailing-icon"></i></a>
+            <a href="https://github.com/Themerr/ThemerrDB" target="_blank" rel="noopener noreferrer"><i data-lucide="heart"></i>{{ _('Contribute a theme') }}<i data-lucide="arrow-up-right" class="trailing-icon"></i></a>
             <a href="https://app.lizardbyte.dev/?lng=en#donate" target="_blank" rel="noopener noreferrer"><i data-lucide="hand-heart"></i>{{ _('Support LizardByte') }}<i data-lucide="arrow-up-right" class="trailing-icon"></i></a>
         </nav>
         <form action="{{ url_for('admin.logout') }}" method="post" class="logout-form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <button type="submit" class="nav-item"><i data-lucide="log-out"></i>{{ _('Sign out') }}</button>
         </form>
-        <small class="sidebar-footer"><a href="https://app.lizardbyte.dev/" target="_blank" rel="noopener noreferrer">LizardByte<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><span>·</span><a href="https://github.com/LizardByte/Themerr" target="_blank" rel="noopener noreferrer">Themerr<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><br>{{ _('Version %(version)s') % {'version': app_version} }}</small>
+        <small class="sidebar-footer"><a href="https://app.lizardbyte.dev/" target="_blank" rel="noopener noreferrer">LizardByte<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><span>·</span><a href="https://github.com/Themerr/Themerr" target="_blank" rel="noopener noreferrer">Themerr<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><br>{{ _('Version %(version)s') % {'version': app_version} }}</small>
     </div>
 </aside>
