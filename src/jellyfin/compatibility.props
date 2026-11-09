@@ -10,7 +10,7 @@
     <ConnectorEfCoreVersion>9.0.10</ConnectorEfCoreVersion>
     <ConnectorArchive>connector-10.11.zip</ConnectorArchive>
     <ConnectorManifest>/jellyfin/connector/manifest-10.11.json</ConnectorManifest>
-    <JellyfinLatestVersion>10.11.11</JellyfinLatestVersion>
+    <JellyfinLatestVersion>12.4</JellyfinLatestVersion>
   </PropertyGroup>
   <PropertyGroup Label="12" Condition="'$(JellyfinSeries)' == '12'">
     <JellyfinMinimumVersion>12.1.0</JellyfinMinimumVersion>
