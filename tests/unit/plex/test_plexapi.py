@@ -144,12 +144,16 @@ def test_collection_id_from_matching_member(configured, item, monkeypatch):
     monkeypatch.setattr(plexapi, 'setup_plexapi', lambda: server)
     monkeypatch.setattr(plexapi.tmdb, 'get_tmdb_id_from_collection', lambda **_: None)
     monkeypatch.setattr(plexapi.themerr_db, 'item_exists', lambda **_: True)
-    monkeypatch.setattr(plexapi.helpers, 'json_get', lambda **_: {
+    database_request = Mock(return_value={
         'belongs_to_collection': {'id': 120794, 'name': 'Batman Collection'},
     })
+    monkeypatch.setattr(plexapi.helpers, 'json_get', database_request)
 
     assert plexapi.get_database_info(item) == (
         'movie_collections', 'themoviedb', 'tv.plex.agents.movie', '120794',
+    )
+    assert database_request.call_args.kwargs['url'] == (
+        'https://themerr.lizardbyte.dev/ThemerrDB/movies/imdb/tt0096895.json'
     )
     item.title = 'Unrelated collection'
     assert plexapi.get_database_info(item)[-1] is None
@@ -464,12 +468,13 @@ def test_update_collection_metadata_and_theme(configured, item, monkeypatch):
         'movie_collections', 'themoviedb', 'tv.plex.agents.movie', '99',
     ))
     monkeypatch.setattr(plexapi.themerr_db, 'item_exists', lambda **_: True)
-    monkeypatch.setattr(plexapi.helpers, 'json_get', lambda **_: {
+    database_request = Mock(return_value={
         'poster_path': '/poster.jpg',
         'backdrop_path': '/backdrop.jpg',
         'overview': 'New summary',
         'youtube_theme_url': 'https://youtube.example/theme',
     })
+    monkeypatch.setattr(plexapi.helpers, 'json_get', database_request)
     monkeypatch.setattr(plexapi.general, 'get_themerr_data', lambda **_: {})
     monkeypatch.setattr(plexapi, 'download_youtube',
                         lambda **_: audio_result('https://audio.example/theme', 'mp4a', True))
@@ -477,6 +482,9 @@ def test_update_collection_metadata_and_theme(configured, item, monkeypatch):
     monkeypatch.setattr(plexapi, 'add_media', add)
 
     plexapi.update_plex_item(42)
+    assert database_request.call_args.kwargs['url'] == (
+        'https://themerr.lizardbyte.dev/ThemerrDB/movie_collections/themoviedb/99.json'
+    )
     assert [call.kwargs['media_type'] for call in add.call_args_list] == ['posters', 'art', 'themes']
     item.editSummary.assert_called_once_with(summary='New summary', locked=False)
 

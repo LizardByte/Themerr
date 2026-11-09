@@ -6,7 +6,7 @@
     <button class="btn btn-outline-light" type="button" data-refresh><i data-lucide="refresh-cw"></i>{{ _('Refresh libraries') }}</button>
 </div>
 <div class="database-status" data-database-status data-unknown-label="{{ _('Unknown') }}" data-stale-label="{{ _('Deployment check failed. Showing the last known deployment; checks run at most hourly.') }}">
-    <i data-lucide="cloud" aria-hidden="true"></i><a href="https://github.com/LizardByte/ThemerrDB" target="_blank" rel="noopener noreferrer" data-database-link>ThemerrDB<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><span>{{ _('Last deployed') }}</span><time data-database-time>{{ _('Checking…') }}</time><span class="database-stale" data-database-stale hidden><i data-lucide="circle-alert" aria-hidden="true"></i><span>{{ _('Check unavailable') }}</span></span>
+    <i data-lucide="cloud" aria-hidden="true"></i><a href="https://github.com/Themerr/ThemerrDB" target="_blank" rel="noopener noreferrer" data-database-link>ThemerrDB<i data-lucide="arrow-up-right" aria-hidden="true"></i></a><span>{{ _('Last deployed') }}</span><time data-database-time>{{ _('Checking…') }}</time><span class="database-stale" data-database-stale hidden><i data-lucide="circle-alert" aria-hidden="true"></i><span>{{ _('Check unavailable') }}</span></span>
 </div>
 <div class="stats-grid">
     <article class="stat-card"><div class="stat-label"><span>{{ _('Library items') }}</span><i data-lucide="library"></i></div><strong>{{ stats.total }}</strong><small>{{ stats.libraries }} {{ _('libraries across') }} {{ stats.servers }} {{ _('servers') }}</small></article>

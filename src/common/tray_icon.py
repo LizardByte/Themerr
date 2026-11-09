@@ -111,15 +111,15 @@ def tray_initialize() -> Icon | bool:
                 MenuItem(text=_('Version %(version)s') % {'version': version.VERSION}, action=None, enabled=False),
                 Menu.SEPARATOR,
                 MenuItem(text=_('Repository'),
-                         action=functools.partial(open_link, 'https://github.com/LizardByte/Themerr')),
+                         action=functools.partial(open_link, 'https://github.com/Themerr/Themerr')),
                 # NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate "%(github)s".
                 MenuItem(text=_('%(github)s Releases') % {'github': 'GitHub'},
                          action=functools.partial(
-                             open_link, 'https://github.com/LizardByte/Themerr/releases/latest')),
+                             open_link, 'https://github.com/Themerr/Themerr/releases/latest')),
                 MenuItem(text=_('Documentation'), action=functools.partial(open_link, definitions.DOCUMENTATION_URL)),
                 MenuItem(text=_('API documentation'), action=functools.partial(open_link, '/api/docs')),
                 MenuItem(text='ThemerrDB',
-                         action=functools.partial(open_link, 'https://github.com/LizardByte/ThemerrDB')),
+                         action=functools.partial(open_link, 'https://github.com/Themerr/ThemerrDB')),
             )),
             MenuItem(
                 # NOTE: Donate to LizardByte.
@@ -349,7 +349,7 @@ def open_link(url: str, *args) -> bool:
 
     Examples
     --------
-    >>> open_link('https://github.com/LizardByte/Themerr')
+    >>> open_link('https://github.com/Themerr/Themerr')
     True
     """
     if url.startswith('/'):

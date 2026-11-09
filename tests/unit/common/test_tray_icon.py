@@ -124,11 +124,11 @@ def test_about_and_donation_links_use_the_native_callback_contract(configured, m
     opened.assert_not_called()
 
     destinations = {
-        'Repository': 'https://github.com/LizardByte/Themerr',
-        'GitHub Releases': 'https://github.com/LizardByte/Themerr/releases/latest',
+        'Repository': 'https://github.com/Themerr/Themerr',
+        'GitHub Releases': 'https://github.com/Themerr/Themerr/releases/latest',
         'Documentation': 'https://docs.lizardbyte.dev/projects/themerr/latest/',
         'API documentation': '/api/docs',
-        'ThemerrDB': 'https://github.com/LizardByte/ThemerrDB',
+        'ThemerrDB': 'https://github.com/Themerr/ThemerrDB',
         'GitHub Sponsors': 'https://github.com/sponsors/LizardByte',
         'Patreon': 'https://www.patreon.com/LizardByte',
         'PayPal': 'https://www.paypal.com/paypalme/ReenigneArcher',
@@ -148,7 +148,7 @@ def test_about_and_donation_links_use_the_native_callback_contract(configured, m
 
 def test_link_callback_returns_browser_failure(monkeypatch):
     monkeypatch.setattr(tray_icon.helpers, 'open_url_in_browser', lambda url: False)
-    assert tray_icon.open_link('https://github.com/LizardByte/Themerr') is False
+    assert tray_icon.open_link('https://github.com/Themerr/Themerr') is False
 
 
 @pytest.mark.skipif(not hasattr(tray_icon, 'MenuOnLeftClickIcon'), reason='Windows tray backend only')

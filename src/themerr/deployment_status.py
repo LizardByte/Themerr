@@ -19,7 +19,7 @@ _lock = Lock()
 _CACHE_KEY = 'themerrdb_deployment'
 _CACHE_VERSION = 3
 _INTERVAL = 3600
-_DEPLOYMENT_URL = 'https://app.lizardbyte.dev/ThemerrDB/deployment.json'
+_DEPLOYMENT_URL = 'https://themerr.lizardbyte.dev/ThemerrDB/deployment.json'
 
 
 def _load() -> dict:
@@ -95,7 +95,7 @@ def publication_status() -> dict:
             _save(state)
         return {
             'updated_at': state.get('updated_at'),
-            'url': 'https://github.com/LizardByte/ThemerrDB',
+            'url': 'https://github.com/Themerr/ThemerrDB',
             'checked_at': state.get('checked_at'),
             'next_check': state.get('next_check'),
             'stale': state.get('stale', True),

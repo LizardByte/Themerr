@@ -2,7 +2,7 @@
 name = "Themerr"
 version = "0.0.0"
 description = "Standalone theme song manager for Plex and Jellyfin."
-repository = "https://github.com/LizardByte/Themerr"
+repository = "https://github.com/Themerr/Themerr"
 author = "LizardByte"
 logo = "web/images/icon-default.png"
 favicon = "web/images/favicon.ico"
@@ -41,7 +41,7 @@ home = true
 
 [targets.sphinx]
 extra_config = "docs/dockle_sphinx.py"
-source_edit_link = "https://github.com/LizardByte/Themerr/blob/master/docs/source/{filename}"
+source_edit_link = "https://github.com/Themerr/Themerr/blob/master/docs/source/{filename}"
 static_paths = ["docs/source/_static"]
 extra_stylesheets = [
   "https://cdn.jsdelivr.net/npm/@lizardbyte/shared-web@2026.1107.31840/dist/crowdin-dockle-css.css",

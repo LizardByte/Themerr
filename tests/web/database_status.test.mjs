@@ -29,7 +29,7 @@ test('age updates locally, publication checks wait for the hourly deadline, and 
     const { root, time, link, warning, window } = fixture(t);
     const query = t.mock.fn(async () => ({
         updated_at: '2026-10-02T10:00:00+00:00',
-        url: 'https://github.com/LizardByte/ThemerrDB',
+        url: 'https://github.com/Themerr/ThemerrDB',
         next_check: Date.now() / 1000 + 3600,
         stale: false,
     }));
@@ -39,7 +39,7 @@ test('age updates locally, publication checks wait for the hourly deadline, and 
     assert.equal(time.dateTime, '2026-10-02T10:00:00.000Z');
     assert.ok(time.title);
     assert.equal(warning.hidden, true);
-    assert.equal(link.href, 'https://github.com/LizardByte/ThemerrDB');
+    assert.equal(link.href, 'https://github.com/Themerr/ThemerrDB');
     t.mock.timers.tick(60 * 1000);
     assert.equal(query.mock.callCount(), 1);
     t.mock.timers.tick(3540 * 1000);

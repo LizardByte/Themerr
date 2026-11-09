@@ -14,8 +14,8 @@ import requests
 from themerr import deployment_status, storage
 
 PUBLICATION = '2026-10-02T12:00:00Z'
-DEPLOYMENT_URL = 'https://app.lizardbyte.dev/ThemerrDB/deployment.json'
-REPOSITORY_URL = 'https://github.com/LizardByte/ThemerrDB'
+DEPLOYMENT_URL = 'https://themerr.lizardbyte.dev/ThemerrDB/deployment.json'
+REPOSITORY_URL = 'https://github.com/Themerr/ThemerrDB'
 
 
 def response(payload=None, status=200):

@@ -71,7 +71,8 @@ def test_verified_upload_and_user_theme_protection(
     ]
     monkeypatch.setattr(metadata, 'resolve', lambda _: {
         'exists': True, 'database_type': 'movies', 'database': 'themoviedb', 'database_id': '42'})
-    monkeypatch.setattr(helpers, 'json_get', lambda **_: {'youtube_theme_url': 'https://youtube.example'})
+    database_request = Mock(return_value={'youtube_theme_url': 'https://youtube.example'})
+    monkeypatch.setattr(helpers, 'json_get', database_request)
     path = tmp_path / 'audio.m4a'
     path.write_bytes(b'complete audio')
     audio = SimpleNamespace(path=str(path), codec='mp4a', sha256='digest', mp4a_available=True)
@@ -89,6 +90,9 @@ def test_verified_upload_and_user_theme_protection(
         download.assert_not_called()
         assert tracked == {}
     else:
+        assert database_request.call_args.kwargs['url'] == (
+            'https://themerr.lizardbyte.dev/ThemerrDB/movies/themoviedb/42.json'
+        )
         assert tracked['audio_sha256'] == 'digest'
         assert connected.json.call_args.kwargs['headers']['X-Themerr-Connector'] == 'a' * 64
         assert connected.json.call_args.kwargs['headers']['Content-Type'] == 'audio/mp4'

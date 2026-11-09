@@ -8,7 +8,7 @@ remove the old Themerr bundle from its Plug-Ins directory, and restart Plex befo
 Release archive
 ---------------
 
-Download the archive for your operating system and architecture from https://github.com/LizardByte/Themerr/releases/latest.
+Download the archive for your operating system and architecture from https://github.com/Themerr/Themerr/releases/latest.
 Extract it and run the ``themerr`` executable, or the ``themerr.app`` bundle on macOS.
 The macOS bundle stores configuration under ``~/Library/Application Support/Themerr/config``.
 Existing installations keep using their saved configuration directory.

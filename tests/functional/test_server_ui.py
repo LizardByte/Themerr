@@ -440,7 +440,7 @@ def test_provider_links_and_scoped_plex_links(client, kind, database_id, source_
 def test_contribution_actions_reflect_video_issues(client, reason, action, visible):
     save_server('a')
     data = snapshot('Theme row', 'themerr')
-    data['1']['items'][0].update(issue_action=action, issue_url='https://github.com/LizardByte/ThemerrDB/issues/new')
+    data['1']['items'][0].update(issue_action=action, issue_url='https://github.com/Themerr/ThemerrDB/issues/new')
     with storage.server_scope('a'):
         storage.replace_dashboard(data)
         storage.set_error(42, reason)

@@ -88,7 +88,7 @@ def test_locale_extraction_cleans_template_and_preserves_crowdin_catalogs(tmp_pa
     assert 'PO-Revision-Date' not in catalog.metadata
     assert 'FIRST AUTHOR <EMAIL@ADDRESS>' not in catalog.header
     assert 'Last-Translator' not in catalog.metadata
-    assert catalog.metadata['Report-Msgid-Bugs-To'] == 'https://github.com/LizardByte/Themerr/issues'
+    assert catalog.metadata['Report-Msgid-Bugs-To'] == 'https://github.com/Themerr/Themerr/issues'
     assert 'charset=utf-8' in catalog.metadata['Content-Type']
     assert catalog.find('Café') is not None
     assert catalog.find(metadata_message) is not None
