@@ -44,9 +44,12 @@ public sealed class ThemeOwnership
     /// <param name="itemId">The native Jellyfin item identifier.</param>
     /// <param name="file">The code-owned theme filename.</param>
     /// <param name="digest">The verified lowercase SHA-256 digest.</param>
-    /// <param name="writeTheme">The validated file mutation performed inside the transaction.</param>
-    /// <remarks>The database lock serializes writes; a failed callback rolls back ownership.</remarks>
-    public void Record(Guid itemId, string file, string digest, Action writeTheme)
+    /// <param name="writeTheme">The validated file mutation, receiving the previous ownership or null.</param>
+    /// <remarks>
+    /// The database lock serializes writes; a failed callback rolls back ownership.
+    /// The callback uses the supplied ownership to avoid a second connection reading the locked table.
+    /// </remarks>
+    public void Record(Guid itemId, string file, string digest, Action<Ownership?> writeTheme)
     {
         lock (Gates.GetOrAdd(_database, _ => new object()))
         {
@@ -59,6 +62,7 @@ public sealed class ThemeOwnership
             using var transaction = context.Database.BeginTransaction();
             var id = itemId.ToString("N");
             var entry = context.Themes.Find(id);
+            Ownership? previous = entry is null ? null : new(entry.File, entry.Sha256);
             if (entry is null)
             {
                 entry = new OwnershipEntry { ItemId = id };
@@ -68,7 +72,7 @@ public sealed class ThemeOwnership
             entry.File = file;
             entry.Sha256 = digest;
             context.SaveChanges();
-            writeTheme();
+            writeTheme(previous);
             transaction.Commit();
         }
     }

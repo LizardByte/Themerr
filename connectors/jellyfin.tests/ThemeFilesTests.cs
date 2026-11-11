@@ -6,6 +6,7 @@ using Xunit;
 namespace Themerr.Connector.Tests;
 
 /// <summary>Tests upload integrity, ownership, protected themes, and filesystem boundaries.</summary>
+[Collection(nameof(SqliteSharedCacheCollection))]
 public sealed class ThemeFilesTests : IDisposable
 {
     private readonly string _root = Path.Combine(Path.GetTempPath(), $"themerr-connector-test-{Guid.NewGuid()}");
@@ -160,6 +161,36 @@ public sealed class ThemeFilesTests : IDisposable
         Assert.False(_themes.State(Guid.NewGuid(), _root).Owned);
     }
 
+    /// <summary>Checks that uploads and replacements succeed when the host enables SQLite shared cache.</summary>
+    /// <returns>The asynchronous test execution.</returns>
+    [Fact]
+    public async Task SavesAndReplacesThemesWithSharedCacheEnabled()
+    {
+        SQLitePCL.Batteries_V2.Init();
+        Assert.Equal(SQLitePCL.raw.SQLITE_OK, SQLitePCL.raw.sqlite3_enable_shared_cache(1));
+        try
+        {
+            await Save();
+            Assert.Equal(_audio, await File.ReadAllBytesAsync(FilePath("theme.m4a"), TestContext.Current.CancellationToken));
+            Assert.Equal(new Ownership("theme.m4a", Digest), _ownership.Find(_itemId));
+
+            var replacement = "different replacement audio"u8.ToArray();
+            var digest = Convert.ToHexString(SHA256.HashData(replacement)).ToLowerInvariant();
+            var saved = await Save("audio/ogg", digest, stream: new MemoryStream(replacement));
+            Assert.True(saved.Owned);
+            Assert.Equal(digest, saved.Sha256);
+            Assert.True(_themes.State(_itemId, _root).Owned);
+            Assert.Equal(new Ownership("theme.opus", digest), _ownership.Find(_itemId));
+            Assert.Equal(replacement, await File.ReadAllBytesAsync(FilePath("theme.opus"), TestContext.Current.CancellationToken));
+            Assert.Equal([FilePath("theme.opus")], Directory.GetFiles(_root));
+            Assert.False(Directory.Exists(FilePath(".themerr-user-themes")));
+        }
+        finally
+        {
+            Assert.Equal(SQLitePCL.raw.SQLITE_OK, SQLitePCL.raw.sqlite3_enable_shared_cache(0));
+        }
+    }
+
     /// <summary>Checks that user themes and manually edited uploads remain protected by default.</summary>
     /// <returns>The asynchronous test execution.</returns>
     [Fact]
@@ -229,7 +260,7 @@ public sealed class ThemeFilesTests : IDisposable
     public async Task DatabaseValuesNeverBecomePaths(string filename)
     {
         await File.WriteAllTextAsync(FilePath("theme.m4a"), "user theme", TestContext.Current.CancellationToken);
-        _ownership.Record(_itemId, filename, Digest, () => { });
+        _ownership.Record(_itemId, filename, Digest, _ => { });
         Assert.False(_themes.State(_itemId, _root).Owned);
         await Assert.ThrowsAsync<ThemeConflictException>(() => Save());
     }
