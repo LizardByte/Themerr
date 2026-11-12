@@ -120,7 +120,11 @@ def test_legacy_import_is_optional_and_only_requests_unowned_existing_themes(
     assert configured['Jellyfin']['IMPORT_LEGACY_OWNERSHIP'] is True
     configured['Jellyfin']['IMPORT_LEGACY_OWNERSHIP'] = False
     assert backend._theme_state(connection, item) == original
-    connection.json.assert_called_once_with('GET', '/Themerr/Items/' + item + '/Theme')
+    assert connection.json.call_count == 1
+    assert connection.json.call_args.args == (
+        'GET',
+        f'/Themerr/Items/{item}/Theme',
+    )
     connection.reset_mock()
     configured['Jellyfin']['IMPORT_LEGACY_OWNERSHIP'] = True
     imported = {'present': True, 'owned': True, 'sha256': 'a' * 64}

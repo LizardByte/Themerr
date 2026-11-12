@@ -310,6 +310,11 @@ process on each server card. Jellyfin TV libraries can use TMDB or TheTVDB metad
 by Jellyfin's TMDb Box Sets plugin appear in its **Collections** library. Include that library to add
 collection themes. Jellyfin must be able to write to your media folders, and each movie needs its own folder.
 
+For example, use ``Movies/Example (2020)/Example.mkv`` rather than placing ``Example.mkv`` directly in
+``Movies`` alongside other movies. Jellyfin uses a fixed theme filename in the movie's folder, so a
+shared folder cannot hold a separate theme for each movie. After reorganizing a movie, rescan the
+Jellyfin library and retry its theme in Themerr.
+
 Existing user themes are protected by default. Under **Settings > Jellyfin**, enable **Overwrite user themes**
 if you want Themerr to replace them. **Back up replaced user themes** controls whether replaced themes are kept.
 If you used the older Themerr-jellyfin plugin, Themerr recognizes its unchanged themes by default and

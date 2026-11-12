@@ -102,11 +102,14 @@ def test_verified_upload_and_user_theme_protection(
     assert storage.get_tracking(ITEM) == {}
 
 
-def test_deleted_item_records_a_fixed_error_without_attempting_an_upload(connected):
+def test_deleted_item_records_a_fixed_error_without_attempting_an_upload(connected, caplog):
     connected.json.return_value = {'Items': [], 'TotalRecordCount': 0}
     assert backend.JellyfinMediaServer(SERVER).update_item(ITEM) is False
     connected.json.assert_called_once()
     connected.request.assert_not_called()
+    assert ITEM in caplog.text
+    assert SERVER in caplog.text
+    assert 'This Jellyfin item is unavailable.' in caplog.text
     with storage.server_scope(SERVER):
         assert storage.get_errors()[ITEM] == 'This Jellyfin item is unavailable.'
         assert storage.get_tracking(ITEM) == {}
