@@ -1804,15 +1804,15 @@ wheels = [
 
 [[package]]
 name = "rstcheck"
-version = "6.3.0"
+version = "6.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rstcheck-core" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0a/3e/54182f5a310e0e2eb287170eb590bb93011161e28e51aa499120ab5c9318/rstcheck-6.3.0.tar.gz", hash = "sha256:583072b43939627b1b0f4492e8af2587092efc1fb5e9f0228fa2df9ea3b44873", size = 30887, upload-time = "2026-07-28T19:49:07.054Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5c/db/835f07a77064b2f3f7436f8174b8026d0d20cc2b806ffd8f17c1c9f12b2f/rstcheck-6.3.1.tar.gz", hash = "sha256:89715eb0b46f22f46b877a37b404efae79aab989a26747fa892cb098760b43ac", size = 26286, upload-time = "2026-11-10T17:20:38.708Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/13/8bdf4e9f028e147ebabd8e093d30b0bc6e70ebbcfa9dbd9b93861e7315cd/rstcheck-6.3.0-py3-none-any.whl", hash = "sha256:3c1d8753b5dc01c33d114711552b2c4855fde00e0713f5a8341d7aaab2777058", size = 8999, upload-time = "2026-07-28T19:49:05.664Z" },
+    { url = "https://files.pythonhosted.org/packages/3f/19/93b1006330aa58681bcbfdb8bdc2247eb47a14fce22d811672b7e2efb91d/rstcheck-6.3.1-py3-none-any.whl", hash = "sha256:1d6db7c9461932ffa9b3fb87130f1abbbd372f2cb961091e39d3ce26b5e17e14", size = 9020, upload-time = "2026-11-10T17:20:37.469Z" },
 ]
 
 [package.optional-dependencies]
@@ -2155,7 +2155,7 @@ requires-dist = [
     { name = "python-multipart", specifier = "==0.0.33" },
     { name = "requests", specifier = "==2.34.2" },
     { name = "requests-cache", specifier = "==1.3.3" },
-    { name = "rstcheck", extras = ["sphinx"], marker = "extra == 'docs'", specifier = "==6.3.0" },
+    { name = "rstcheck", extras = ["sphinx"], marker = "extra == 'docs'", specifier = "==6.3.1" },
     { name = "schedule", specifier = "==1.2.2" },
     { name = "sphinx-csharp", marker = "extra == 'docs'", specifier = "==1.0.0" },
     { name = "sqlalchemy", specifier = "==2.1.8" },
