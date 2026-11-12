@@ -49,7 +49,7 @@ dev = [
 docs = [
     "breathe==5.1.0",
     "numpydoc==1.11.0",
-    "rstcheck[sphinx]==6.3.0",
+    "rstcheck[sphinx]==6.3.1",
     "sphinx-csharp==1.0.0",
 ]
 
