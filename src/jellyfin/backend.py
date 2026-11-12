@@ -64,7 +64,14 @@ def _eligible(item):
 def _theme_state(connection, item_id):
     """Optionally import digest-verified legacy ownership through the authenticated connector."""
     route = f'/Themerr/Items/{identifier(item_id)}/Theme'
-    state = connection.json('GET', route)
+    state = connection.json(
+        'GET',
+        route,
+        error_messages={
+            400: 'This Jellyfin item needs an accessible, dedicated media folder. '
+                 'Put each movie in its own folder, rescan the Jellyfin library, and retry.',
+        },
+    )
     if state.get('present') and not state['owned'] and config.CONFIG['Jellyfin']['IMPORT_LEGACY_OWNERSHIP']:
         state = connection.json('POST', f'{route}/Import', headers={'X-Themerr-Connector': connector.bundle()['build']})
     return state
@@ -204,6 +211,7 @@ class JellyfinMediaServer(MediaServer):
             try:
                 return self._update(item_id)
             except MediaServerError as exc:
+                log.warning('Theme update failed for item %s on server %s: %s', item_id, self.server_id, str(exc))
                 theme_errors.set_error(item_id, str(exc))
                 return False
 

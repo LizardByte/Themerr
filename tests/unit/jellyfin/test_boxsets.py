@@ -44,7 +44,7 @@ def collection_library(configured, monkeypatch):
         COLLECTION,
     }
 
-    def response(method, path, *, params=None):
+    def response(method, path, *, params=None, error_messages=None):
         assert method == 'GET'
         if path == '/Library/VirtualFolders':
             return [{

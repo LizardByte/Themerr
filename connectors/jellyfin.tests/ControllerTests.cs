@@ -136,6 +136,32 @@ public sealed class ControllerTests : IDisposable
         Assert.IsType<ConflictResult>((await _controller.Upload(id, CancellationToken.None)).Result);
     }
 
+    /// <summary>Checks that movies in shared folders cannot read, import, or overwrite a shared theme.</summary>
+    /// <returns>The asynchronous test execution.</returns>
+    [Fact]
+    public async Task SharedMovieFoldersRemainProtected()
+    {
+        var id = Guid.NewGuid();
+        var movie = Path.Combine(_root, "Example.mkv");
+        var theme = Path.Combine(_root, "theme.m4a");
+        await File.WriteAllTextAsync(movie, "original movie", TestContext.Current.CancellationToken);
+        await File.WriteAllTextAsync(theme, "another movie's theme", TestContext.Current.CancellationToken);
+        _library.Setup(value => value.GetItemById(id)).Returns(new Movie
+        {
+            Id = id,
+            Path = movie,
+            IsInMixedFolder = true,
+        });
+        _controller.Request.Headers["X-Themerr-Connector"] = "development";
+        _controller.Request.Headers["X-Themerr-Overwrite-User"] = "true";
+        Assert.IsType<BadRequestResult>(_controller.State(id).Result);
+        Assert.IsType<ConflictResult>((await _controller.Upload(id, CancellationToken.None)).Result);
+        Assert.IsType<BadRequestResult>((await _controller.Import(id, CancellationToken.None)).Result);
+        Assert.Equal("original movie", await File.ReadAllTextAsync(movie, TestContext.Current.CancellationToken));
+        Assert.Equal("another movie's theme", await File.ReadAllTextAsync(theme, TestContext.Current.CancellationToken));
+        Assert.False(Directory.Exists(Path.Combine(_root, "server-data")));
+    }
+
     /// <summary>Checks that invalid audio and protected user themes return fixed client errors.</summary>
     /// <returns>The asynchronous test execution.</returns>
     [Fact]

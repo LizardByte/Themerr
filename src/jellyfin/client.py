@@ -8,7 +8,11 @@ from uuid import UUID
 import requests
 
 # local imports
+from common import logger
 from media_servers.base import MediaServerError
+
+
+log = logger.get_logger(__name__)
 
 
 def identifier(value: str) -> str:
@@ -98,8 +102,31 @@ class Client:
         self.token = token
         self.server_version = None
 
-    def request(self, method, path, **kwargs):
-        """Request a code-owned route and translate failures to fixed client messages."""
+    def request(self, method, path, *, error_messages=None, **kwargs):
+        """Request a code-owned route and translate failures to fixed client messages.
+
+        Parameters
+        ----------
+        method : str
+            HTTP method for the Jellyfin operation.
+        path : str
+            Code-owned API route, containing only validated identifiers.
+        error_messages : dict of int to str, optional
+            Code-owned explanations for statuses with a known meaning on this route.
+            Upstream error bodies are never exposed.
+        **kwargs : object
+            Request options forwarded to Requests.
+
+        Returns
+        -------
+        requests.Response
+            Successful response that the caller must close.
+
+        Raises
+        ------
+        MediaServerError
+            Jellyfin could not be reached or rejected the request.
+        """
         headers = {
             'Authorization': f'MediaBrowser Token="{quote(self.token, safe="")}"',
             **kwargs.pop('headers', {}),
@@ -117,16 +144,23 @@ class Client:
                 **kwargs,
             )
         except requests.RequestException as exc:
+            log.warning('Jellyfin %s %s failed with %s.', method, path, type(exc).__name__)
             raise MediaServerError('Could not reach Jellyfin. Check its address and API key.', 502) from exc
         if not 200 <= response.status_code < 300:
             status = response.status_code
             response.close()
+            log.warning('Jellyfin %s %s failed with HTTP %s.', method, path, status)
             message = {
                 401: 'Jellyfin rejected the API key.',
                 403: 'An administrator Jellyfin API key is required.',
                 404: 'This Jellyfin resource is unavailable.',
                 409: 'Jellyfin protected an existing theme or rejected the connector version.',
-            }.get(status, 'Jellyfin could not complete this request.')
+                **(error_messages or {}),
+            }.get(
+                status,
+                f'Jellyfin could not complete this request (HTTP {status}). '
+                'Check the Jellyfin server log for details.',
+            )
             raise MediaServerError(
                 message,
                 status
@@ -155,6 +189,7 @@ class Client:
                 self.server_version = data.get('Version')
             return data
         except ValueError as exc:
+            log.warning('Jellyfin %s %s returned invalid JSON.', method, path)
             raise MediaServerError('Jellyfin returned an invalid response.', 502) from exc
         finally:
             response.close()
