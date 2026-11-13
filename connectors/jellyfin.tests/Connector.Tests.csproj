@@ -14,7 +14,7 @@
     <ProjectReference Include="../jellyfin/Themerr.Connector.csproj" />
     <PackageReference Include="Jellyfin.Controller" Version="$(JellyfinVersion)" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="$(ConnectorEfCoreVersion)" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
     <PackageReference Include="Moq" Version="4.21.0" />
     <PackageReference Include="xunit.v3.mtp-off" Version="4.0.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" PrivateAssets="all" />
