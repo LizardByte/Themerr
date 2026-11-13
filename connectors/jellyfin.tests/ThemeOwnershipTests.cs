@@ -40,9 +40,9 @@ public sealed class ThemeOwnershipTests : IDisposable
     {
         var first = Guid.NewGuid();
         var second = Guid.NewGuid();
-        _ownership.Record(first, "theme.m4a", "first", () => { });
-        _ownership.Record(second, "theme.m4a", "second", () => { });
-        _ownership.Record(first, "theme.opus", "replacement", () => { });
+        _ownership.Record(first, "theme.m4a", "first", _ => { });
+        _ownership.Record(second, "theme.m4a", "second", _ => { });
+        _ownership.Record(first, "theme.opus", "replacement", _ => { });
         var reopened = new ThemeOwnership(_root);
         Assert.Equal(new Ownership("theme.opus", "replacement"), reopened.Find(first));
         Assert.Equal(new Ownership("theme.m4a", "second"), reopened.Find(second));
@@ -64,11 +64,22 @@ public sealed class ThemeOwnershipTests : IDisposable
     public void FailedAudioWritesNeverCommitOwnership()
     {
         var id = Guid.NewGuid();
-        Assert.Throws<IOException>(() => _ownership.Record(id, "theme.m4a", "failed", () => throw new IOException()));
+        Assert.Throws<IOException>(() => _ownership.Record(id, "theme.m4a", "failed", _ => throw new IOException()));
         Assert.Null(_ownership.Find(id));
-        _ownership.Record(id, "theme.m4a", "original", () => { });
-        Assert.Throws<IOException>(() => _ownership.Record(id, "theme.opus", "failed", () => throw new IOException()));
+        _ownership.Record(id, "theme.m4a", "original", _ => { });
+        Assert.Throws<IOException>(() => _ownership.Record(id, "theme.opus", "failed", _ => throw new IOException()));
         Assert.Equal(new Ownership("theme.m4a", "original"), new ThemeOwnership(_root).Find(id));
+    }
+
+    /// <summary>Checks that file mutations receive the previous ownership before replacement.</summary>
+    [Fact]
+    public void AudioWritesReceivePreviousOwnership()
+    {
+        var id = Guid.NewGuid();
+        _ownership.Record(id, "theme.m4a", "original", previous => Assert.Null(previous));
+        _ownership.Record(id, "theme.opus", "replacement", previous =>
+            Assert.Equal(new Ownership("theme.m4a", "original"), previous));
+        Assert.Equal(new Ownership("theme.opus", "replacement"), _ownership.Find(id));
     }
 
     /// <summary>Checks that concurrent writes retain separate ownership records.</summary>
@@ -78,7 +89,7 @@ public sealed class ThemeOwnershipTests : IDisposable
     {
         var ids = Enumerable.Range(0, 8).Select(_ => Guid.NewGuid()).ToArray();
         await Task.WhenAll(ids.Select(id => Task.Run(() =>
-            new ThemeOwnership(_root).Record(id, "theme.m4a", id.ToString("N"), () => { }))));
+            new ThemeOwnership(_root).Record(id, "theme.m4a", id.ToString("N"), _ => { }))));
         foreach (var id in ids)
         {
             Assert.Equal(id.ToString("N"), _ownership.Find(id)!.Sha256);
@@ -99,7 +110,7 @@ public sealed class ThemeOwnershipTests : IDisposable
             Guid.NewGuid(),
             "theme.m4a",
             "digest",
-            () => wroteAudio = true));
+            _ => wroteAudio = true));
         Assert.False(wroteAudio);
         Assert.Equal("invalid database", File.ReadAllText(DatabasePath));
     }
@@ -130,7 +141,7 @@ public sealed class ThemeOwnershipTests : IDisposable
 
         Assert.Equal(new Ownership("theme.mp3", "original"), _ownership.Find(id));
         var next = Guid.NewGuid();
-        _ownership.Record(next, "theme.m4a", "new", () => { });
+        _ownership.Record(next, "theme.m4a", "new", _ => { });
         Assert.Equal(new Ownership("theme.mp3", "original"), _ownership.Find(id));
         Assert.Equal(new Ownership("theme.m4a", "new"), _ownership.Find(next));
     }
@@ -161,7 +172,7 @@ public sealed class ThemeOwnershipTests : IDisposable
         }
 
         Assert.Throws<ThemeConflictException>(() => _ownership.Find(Guid.NewGuid()));
-        Assert.Throws<ThemeConflictException>(() => _ownership.Record(Guid.NewGuid(), "theme.m4a", "digest", () => { }));
+        Assert.Throws<ThemeConflictException>(() => _ownership.Record(Guid.NewGuid(), "theme.m4a", "digest", _ => { }));
         Assert.Equal("outside", File.ReadAllText(outside));
     }
 
@@ -204,7 +215,7 @@ public sealed class ThemeOwnershipTests : IDisposable
             await process.WaitForExitAsync(TestContext.Current.CancellationToken);
             Assert.Equal(0, process.ExitCode);
             Assert.Throws<ThemeConflictException>(() => _ownership.Find(Guid.NewGuid()));
-            Assert.Throws<ThemeConflictException>(() => _ownership.Record(Guid.NewGuid(), "theme.m4a", "digest", () => { }));
+            Assert.Throws<ThemeConflictException>(() => _ownership.Record(Guid.NewGuid(), "theme.m4a", "digest", _ => { }));
             Assert.Equal("outside", await File.ReadAllTextAsync(outside, TestContext.Current.CancellationToken));
         }
         finally

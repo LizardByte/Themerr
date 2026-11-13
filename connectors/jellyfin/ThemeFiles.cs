@@ -43,33 +43,8 @@ public sealed class ThemeFiles(ThemeOwnership ownership)
     /// <param name="themeSongCount">The number of themes reported by Jellyfin.</param>
     /// <returns>Presence, verified ownership, and the digest of a single tracked theme.</returns>
     /// <exception cref="ThemeConflictException">A theme resource is a symlink or junction.</exception>
-    public ThemeState State(Guid itemId, string root, int themeSongCount = 0)
-    {
-        RejectDirectoryLink(root);
-        var files = ThemeNames.Where(name => File.Exists(Path.Combine(root, name))).ToArray();
-        var music = Path.Combine(root, ThemeMusic);
-        RejectDirectoryLink(music);
-        var present = files.Length > 0 || themeSongCount > 0 || Directory.Exists(music);
-        var record = ownership.Find(itemId);
-
-        // A database value selects a code-owned filename; it never becomes a path.
-        var file = ThemeNames.FirstOrDefault(value => value == record?.File);
-        if (file is null || files.Length != 1 || themeSongCount > 1 || Directory.Exists(music))
-        {
-            return new(present, false, null);
-        }
-
-        var path = Path.Combine(root, file);
-        RejectLink(path);
-        if (!File.Exists(path))
-        {
-            return new(present, false, null);
-        }
-
-        using var stream = File.OpenRead(path);
-        var digest = Convert.ToHexString(SHA256.HashData(stream)).ToLowerInvariant();
-        return new(true, digest == record!.Sha256, digest);
-    }
+    public ThemeState State(Guid itemId, string root, int themeSongCount = 0) =>
+        State(root, themeSongCount, ownership.Find(itemId));
 
     /// <summary>Validates and atomically replaces one supported audio theme.</summary>
     /// <param name="itemId">The native Jellyfin item identifier.</param>
@@ -119,10 +94,10 @@ public sealed class ThemeFiles(ThemeOwnership ownership)
                 throw new InvalidDataException();
             }
 
-            ownership.Record(itemId, file, digest, () =>
+            ownership.Record(itemId, file, digest, previous =>
             {
                 // Recheck ownership and link boundaries after receiving the complete body.
-                var current = State(itemId, root, themeSongCount);
+                var current = State(root, themeSongCount, previous);
                 if ((current.Present && !current.Owned && !overwriteUser) ||
                     !originals.SequenceEqual(Snapshot(root)))
                 {
@@ -186,7 +161,7 @@ public sealed class ThemeFiles(ThemeOwnership ownership)
                 return current;
             }
 
-            ownership.Record(itemId, file, digest, () =>
+            ownership.Record(itemId, file, digest, _ =>
             {
                 if (!original.SequenceEqual(Snapshot(root)))
                 {
@@ -196,6 +171,39 @@ public sealed class ThemeFiles(ThemeOwnership ownership)
         }
 
         return State(itemId, root, themeSongCount);
+    }
+
+    /// <summary>Verifies theme files against ownership already read by the caller.</summary>
+    /// <param name="root">The trusted item directory resolved by Jellyfin.</param>
+    /// <param name="themeSongCount">The number of themes reported by Jellyfin.</param>
+    /// <param name="record">The ownership to verify, or null when the item has no record.</param>
+    /// <returns>Presence, verified ownership, and the digest of a single tracked theme.</returns>
+    /// <exception cref="ThemeConflictException">A theme resource is a symlink or junction.</exception>
+    private static ThemeState State(string root, int themeSongCount, Ownership? record)
+    {
+        RejectDirectoryLink(root);
+        var files = ThemeNames.Where(name => File.Exists(Path.Combine(root, name))).ToArray();
+        var music = Path.Combine(root, ThemeMusic);
+        RejectDirectoryLink(music);
+        var present = files.Length > 0 || themeSongCount > 0 || Directory.Exists(music);
+
+        // A database value selects a code-owned filename; it never becomes a path.
+        var file = ThemeNames.FirstOrDefault(value => value == record?.File);
+        if (file is null || files.Length != 1 || themeSongCount > 1 || Directory.Exists(music))
+        {
+            return new(present, false, null);
+        }
+
+        var path = Path.Combine(root, file);
+        RejectLink(path);
+        if (!File.Exists(path))
+        {
+            return new(present, false, null);
+        }
+
+        using var stream = File.OpenRead(path);
+        var digest = Convert.ToHexString(SHA256.HashData(stream)).ToLowerInvariant();
+        return new(true, digest == record!.Sha256, digest);
     }
 
     /// <summary>Receives bounded audio into a new temporary file while hashing it.</summary>
