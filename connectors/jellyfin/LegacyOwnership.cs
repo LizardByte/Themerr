@@ -36,6 +36,7 @@ public sealed class LegacyOwnership(string serverDataPath)
         var rows = context.Themes.AsNoTracking().Where(value => value.ItemId == compact || value.ItemId == standard)
             .Take(2).ToList();
         return rows.Count == 1 && rows[0].ThemeProvider == "themerr" && rows[0].ThemeHashAlgorithm == "SHA256"
-            ? rows[0].ThemeHash : null;
+            ? rows[0].ThemeHash
+            : null;
     }
 }

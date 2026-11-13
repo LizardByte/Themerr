@@ -231,7 +231,8 @@ public sealed class Controller : ControllerBase
         item is MediaBrowser.Controller.Entities.Movies.Movie or MediaBrowser.Controller.Entities.TV.Series or
             MediaBrowser.Controller.Entities.Movies.BoxSet &&
         item.IsFileProtocol && !item.IsInMixedFolder && Directory.Exists(item.ContainingFolderPath)
-            ? Path.GetFullPath(item.ContainingFolderPath) : null;
+            ? Path.GetFullPath(item.ContainingFolderPath)
+            : null;
 
     /// <summary>Logs storage details while returning a fixed client-facing error.</summary>
     /// <param name="error">The storage exception to record server-side.</param>
